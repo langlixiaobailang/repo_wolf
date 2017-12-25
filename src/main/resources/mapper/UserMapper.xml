@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.base.web.dao.UserDao">
+    <resultMap id = "result" type = "com.base.web.beans.User">
+        <result property = "id" column = "user_id"/>
+        <result property = "name" column = "real_name"/>
+    </resultMap>
+
+    <select id = "getUserById" resultMap = "result">
+        SELECT * FROM be_user where user_id = #{id};
+    </select>
+
+    <select id = "getUserList" resultMap="result" >
+        SELECT * FROM be_user
+    </select>
+
+</mapper>
