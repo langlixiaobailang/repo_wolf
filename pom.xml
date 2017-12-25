@@ -59,8 +59,6 @@
 			<artifactId>jsqlparser</artifactId>
 			<version>0.9.6</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -72,8 +70,7 @@
 		</plugins>
 	</build>
 
-
-
+    <!-- maven 私服地址-->
 	<repositories>
 		<repository>
 			<id>sonatype-nexus-snapshots</id>
@@ -87,7 +84,4 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
-
-
 </project>
