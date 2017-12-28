@@ -33,9 +33,10 @@ public class UserController {
 		Long id = 2102L;
 		User user = userSV.getUserById(id);
 		try {
-			String  uuu = redisBusiness.get("usertime");
-			System.out.println(uuu);
-			redisBusiness.set("usertime",user.toString(),100);
+
+			redisBusiness.set("user001",user.toString());
+			String u = redisBusiness.get("user001");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,11 +44,12 @@ public class UserController {
 	}
 
 	@RequestMapping("/list")
-	public String getUserList(){
-		PageHelper.startPage(2,100);
-		List list = userSV.getUserList();
+	public PageInfo getUserList(){
+		PageHelper.startPage(1,10);
+		List<User> list = userSV.getUserList();
 		PageInfo p =new PageInfo (list);
-		return  p.toString();
+
+		return  p;
 	}
 
 	@RequestMapping("/listmap")

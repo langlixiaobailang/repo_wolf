@@ -60,15 +60,26 @@
 			<version>0.9.6</version>
 		</dependency>
 		<!-- redis-->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-redis -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-redis</artifactId>
+			<version>1.4.7.RELEASE</version>
 		</dependency>
+
 		<!-- session 共享-->
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-data-redis</artifactId>
 		</dependency>
+		<!-- 自动封装bean getset toString 等-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 
