@@ -4,30 +4,38 @@ package com.base.web.beans;
  * Created by Administrator on 2017/12/21.
  */
 public class User {
-    private Long id;
-    private String name;
+    private Long userId;
+    private String realName;
+
+    public User() {
+    }
+
+    public User(Long userId, String realName) {
+        this.userId = userId;
+        this.realName = realName;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "userId=" + userId +
+                ", realName='" + realName + '\'' +
                 '}';
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 }

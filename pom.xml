@@ -59,7 +59,20 @@
 			<artifactId>jsqlparser</artifactId>
 			<version>0.9.6</version>
 		</dependency>
+		<!-- redis-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
+		</dependency>
+		<!-- session 共享-->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+
 	</dependencies>
+
+
 
 	<build>
 		<plugins>
