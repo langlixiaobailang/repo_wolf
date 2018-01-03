@@ -1,4 +1,4 @@
-package com.base.web;
+package com.cmos.web;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +8,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@MapperScan("com.base.web.dao")
+@MapperScan({"com.cmos.web.dao"})
 @EnableCaching
 public class SpingBootApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {

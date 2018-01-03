@@ -1,4 +1,4 @@
-package com.base.web.beans;
+package com.cmos.web.beans;
 
 import lombok.Data;
 import lombok.Getter;

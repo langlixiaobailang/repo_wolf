@@ -2,22 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.base.web.dao.UserDao">
-    <!--<resultMap id = "result" type = "com.base.web.beans.User">-->
-        <!--<result property = "id" column = "user_id"/>-->
-        <!--<result property = "name" column = "real_name"/>-->
-    <!--</resultMap>-->
-
-    <select id = "getUserById" resultType="user" >
+<mapper namespace = "com.cmos.web.dao.UserDao">
+    <select id = "selectByMap" resultType="java.util.Map" >
         SELECT * FROM be_user where user_id = #{id};
     </select>
 
-    <select id = "getUserList" resultType="user"  >
-        SELECT * FROM be_user
+    <select id = "getListByMap" parameterType="java.util.Map" resultType="java.util.Map" >
+        SELECT user_id userId,real_name realName FROM be_user
     </select>
-
-    <select id = "getUserListMap" resultType="user" >
-        SELECT user_id,real_name FROM be_user
-    </select>
-
 </mapper>

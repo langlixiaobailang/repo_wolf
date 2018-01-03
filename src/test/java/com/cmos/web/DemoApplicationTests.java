@@ -1,4 +1,4 @@
-package com.base.web;
+package com.cmos.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
