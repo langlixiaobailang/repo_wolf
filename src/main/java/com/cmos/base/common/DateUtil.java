@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
 /**
  * 时间格式类
- * @author hy 2016年2月23日16:58:22
+ * @author hy 2018年1月4日10:10:58
  *
  */
 public class DateUtil

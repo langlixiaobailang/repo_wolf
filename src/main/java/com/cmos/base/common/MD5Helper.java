@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * md5帮助类
- * @author hy 2016年2月23日16:59:29
+ * @author hy 2018年1月4日10:11:08
  *
  */
 public class MD5Helper

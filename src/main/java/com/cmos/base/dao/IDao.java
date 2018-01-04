@@ -81,7 +81,7 @@ public interface IDao<T> {
 	 Map<String,Object> selectByMap(Map<String,Object> map) throws Exception;
 
 	/**
-	 * 查询一条数据
+	 * 查询列表
 	 * @param map
 	 * @return map
 	 * @throws Exception
