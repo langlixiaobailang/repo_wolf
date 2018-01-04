@@ -13,7 +13,6 @@ import org.springframework.cache.annotation.EnableCaching;
 public class SpingBootApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(SpingBootApplication.class, args);
-
 	}
 
 	@Override
