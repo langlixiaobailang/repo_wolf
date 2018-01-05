@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @MapperScan({"com.cmos.web.dao"})
-@ComponentScan(basePackages={"com.cmos.web","com.cmos.base"})
+@ComponentScan(basePackages={"com.cmos"})
 @EnableCaching
 public class SpingBootApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {

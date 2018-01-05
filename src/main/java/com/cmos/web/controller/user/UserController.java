@@ -1,6 +1,5 @@
-package com.cmos.web.controller;
+package com.cmos.web.controller.user;
 
-import com.cmos.base.common.MD5Helper;
 import com.cmos.base.controller.IController;
 import com.cmos.base.result.Result;
 import com.cmos.web.beans.User;
