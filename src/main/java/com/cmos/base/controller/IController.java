@@ -1,6 +1,6 @@
 package com.cmos.base.controller;
 
-import com.cmos.web.beans.User;
+import com.cmos.web.beans.user.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

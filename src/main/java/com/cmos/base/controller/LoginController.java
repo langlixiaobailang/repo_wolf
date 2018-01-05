@@ -2,10 +2,7 @@ package com.cmos.base.controller;
 
 import com.cmos.base.common.MD5Helper;
 import com.cmos.base.result.Result;
-import com.cmos.web.beans.User;
-import com.cmos.web.iservice.IUserSV;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.cmos.web.iservice.user.IUserSV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
