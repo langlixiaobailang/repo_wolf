@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.cmos.web.dao.UserDao">
+<mapper namespace = "com.cmos.web.dao.user.UserDao">
     <select id = "selectByMap" resultType="java.util.Map" >
         SELECT * FROM be_user where user_id = #{id};
     </select>
