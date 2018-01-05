@@ -2,8 +2,8 @@ package com.cmos.web.controller.user;
 
 import com.cmos.base.controller.IController;
 import com.cmos.base.result.Result;
-import com.cmos.web.beans.User;
-import com.cmos.web.iservice.IUserSV;
+import com.cmos.web.beans.user.User;
+import com.cmos.web.iservice.user.IUserSV;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
