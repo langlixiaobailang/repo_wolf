@@ -30,9 +30,11 @@ public class UserController extends IController{
 	@RequestMapping(value = "/get-user",method = RequestMethod.GET)
 	public Result<Object> getTest(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG);
-		User curruser = this.getLoginUser(request);
-		if(curruser == null){
-			logger.info("请重新登录");
+		User loginUser = this.getLoginUser(request);
+		if(loginUser == null){
+			result.setReturnCode(this.ERROR);
+			result.setReturnMessage(this.LOGIN_OUT_MSG);
+			return result;
 		}
 		Long id = 2103L;
 		Map<String,Object> paramMap = new HashMap<>();

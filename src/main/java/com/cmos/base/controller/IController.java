@@ -22,6 +22,7 @@ public class IController {
     public static final  String DELETE_SUCCESS_MSG = "删除成功";
     public static final  String DELETE_ERROR_MSG = "删除失败";
     public static final  String GETPARAM_ERROR_MSG = "获取参数失败";
+    public static final  String LOGIN_OUT_MSG = "用户未登录";
     public static final  Integer pageNum = 1;
     public static final  Integer pageSize = 20;
 
@@ -41,7 +42,7 @@ public class IController {
      */
     public User getLoginUser(HttpServletRequest request) {
         HttpSession session = getSession(request);
-        User user = (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("loginUser");
         if(user != null){
             return user;
         }
