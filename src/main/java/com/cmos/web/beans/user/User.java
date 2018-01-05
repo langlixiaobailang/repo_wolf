@@ -15,5 +15,4 @@ public class User implements Serializable{
     private String loginName;
     private String mobile;
     private Date createDate;
-
 }

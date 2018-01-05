@@ -37,7 +37,7 @@ public class IController {
     }
 
     /**
-     * 获取登录用户id
+     * 获取登录用户
      * @return
      */
     public User getLoginUser(HttpServletRequest request) {
