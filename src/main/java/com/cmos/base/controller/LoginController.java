@@ -6,10 +6,7 @@ import com.cmos.web.iservice.user.IUserSV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -27,7 +24,7 @@ public class LoginController extends IController{
 	 */
 	@RequestMapping(value = "/login-check",method = RequestMethod.GET)
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request){
-		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG);
+		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
 			Map<String,Object> loginUser = userSV.selectByMap(params);
 			if(loginUser == null){
@@ -63,7 +60,7 @@ public class LoginController extends IController{
 	 */
 	@RequestMapping(value = "/login-out",method = RequestMethod.GET)
 	public Result<Object> loginOut(@RequestParam Map<String, Object> params, HttpServletRequest request){
-		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG);
+		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		this.getSession(request).removeAttribute("loginUser");
 		result.setReturnCode(this.SUCCESS);
 		result.setReturnMessage("退出成功！");

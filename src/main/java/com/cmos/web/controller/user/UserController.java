@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,20 +24,18 @@ public class UserController extends IController{
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private IUserSV userSV;
-
-	@RequestMapping(value = "/get-user",method = RequestMethod.GET)
+	@RequestMapping(value = "/get-user")
 	public Result<Object> getTest(@RequestParam Map<String, Object> params, HttpServletRequest request){
-		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG);
-		User loginUser = this.getLoginUser(request);
-		if(loginUser == null){
-			result.setReturnCode(this.ERROR);
-			result.setReturnMessage(this.LOGIN_OUT_MSG);
-			return result;
-		}
-		Long id = 2103L;
-		Map<String,Object> paramMap = new HashMap<>();
+		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
-			paramMap.put("id",id);
+			Map<String,Object> paramMap = new HashMap<>();
+			User loginUser = this.getLoginUser(request);
+			if(loginUser == null){
+				result.setReturnCode(this.ERROR);
+				result.setReturnMessage(this.LOGIN_OUT_MSG);
+				return result;
+			}
+			paramMap.put("id",2103L);
 			Map<String,Object> map = userSV.selectByMap(paramMap);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.SELECT_SUCCESS_MO_MSG);
@@ -47,7 +44,7 @@ public class UserController extends IController{
 		} catch (Exception e) {
 			logger.info(this.SELECT_ERROR_MO_MSG);
 		}
-		return null;
+	    return null;
 	}
 	/**
 	 * 根据参数获取列表
@@ -57,7 +54,7 @@ public class UserController extends IController{
 	 */
 	@RequestMapping("/get-user-list")
 	public Result<Object> getUserList(@RequestParam Map<String, Object> params, HttpServletRequest request){
-		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG);
+		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
 			PageHelper.startPage(this.pageNum,this.pageSize);
 			PageHelper.orderBy("user_id desc");

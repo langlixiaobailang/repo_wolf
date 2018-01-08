@@ -23,6 +23,7 @@ public class IController {
     public static final  String DELETE_ERROR_MSG = "删除失败";
     public static final  String GETPARAM_ERROR_MSG = "获取参数失败";
     public static final  String LOGIN_OUT_MSG = "用户未登录";
+    public static final  Object object = ""; //默认返回值为空
     public static final  Integer pageNum = 1;
     public static final  Integer pageSize = 20;
 

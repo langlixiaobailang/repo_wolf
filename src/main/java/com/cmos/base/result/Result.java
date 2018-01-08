@@ -58,6 +58,18 @@ public class Result<T> implements Serializable {
         this.returnMessage = returnMessage;
     }
 
+    /**
+     * 错误消息对象构造
+     * @param returnCode 状态码
+     * @param returnMessage 状态描述
+     * */
+    public Result(String returnCode, String returnMessage,Object object) {
+        this(null);
+        this.returnCode = returnCode;
+        this.returnMessage = returnMessage;
+        this.object = object;
+    }
+
     public Result(Collection<T> dataList) {
         this(dataList, dataList != null ? dataList.size() : 0);
     }
