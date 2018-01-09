@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +32,7 @@ public class UserController extends IController{
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/get-user")
+	@RequestMapping(value = "/get-user",method = RequestMethod.POST)
 	public Result<Object> getUser(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
@@ -54,7 +55,7 @@ public class UserController extends IController{
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/get-user-list")
+	@RequestMapping(value = "/get-user-list",method = RequestMethod.POST)
 	public Result<Object> getUserList(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
@@ -78,7 +79,7 @@ public class UserController extends IController{
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/save")
+	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	public Result<Object> save(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {

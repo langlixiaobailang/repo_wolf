@@ -25,7 +25,7 @@
     var password = $("#password").val();
     $.ajax({
       url : "login/login-check",
-      type : "GET",
+      type : "post",
       data : {"loginName":loginName,password:password},
       success : function(result ,textStatus, jqXHR) {
         if(result.returnCode == "200"){
@@ -40,7 +40,7 @@
   $("#queryM").click( function () {
     $.ajax({
       url : "user/get-user",
-      type : "GET",
+      type : "post",
       data : {},
       success : function(result ,textStatus, jqXHR) {
         if(result.returnCode == "200"){
@@ -55,7 +55,7 @@
   $("#queryList").click( function () {
     $.ajax({
       url : "user/get-user-list",
-      type : "GET",
+      type : "post",
       data : {},
       success : function(result ,textStatus, jqXHR) {
         if(result.returnCode == "200"){
@@ -68,10 +68,25 @@
   });
 
   $("#save").click( function () {
+    $.ajax({
+      url : "user/save",
+      type : "post",
+      data : {"id":""},
+      success : function(result ,textStatus, jqXHR) {
+        if(result.returnCode == "200"){
+          alert(result.returnCode + " =="+result.returnMessage);
+        }else{
+          alert(result.returnCode + " =="+result.returnMessage);
+        }
+      }
+    });
+  });
+
+  $("#update").click( function () {
     var id = $("#id").val();
     $.ajax({
       url : "user/save",
-      type : "GET",
+      type : "post",
       data : {"id":id},
       success : function(result ,textStatus, jqXHR) {
         if(result.returnCode == "200"){

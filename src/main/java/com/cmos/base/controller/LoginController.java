@@ -23,7 +23,7 @@ public class LoginController extends IController{
 	 * 登录校验,验证登录用户
 	 * @return 导航到
 	 */
-	@RequestMapping(value = "/login-check",method = RequestMethod.GET)
+	@RequestMapping(value = "/login-check",method = RequestMethod.POST)
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
@@ -60,7 +60,7 @@ public class LoginController extends IController{
 	 * 退出系统
 	 * @return 导航到
 	 */
-	@RequestMapping(value = "/login-out",method = RequestMethod.GET)
+	@RequestMapping(value = "/login-out",method = RequestMethod.POST)
 	public Result<Object> loginOut(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		this.getSession(request).removeAttribute("loginUser");

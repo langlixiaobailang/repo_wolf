@@ -53,7 +53,7 @@
         )
         values (
         #{deptId},#{userName},#{loginName},#{password},#{phone},
-        #{email},#{ifAdmin},#{ifLock},0,#{updateDate},
+        #{email},#{ifAdmin},0,0,#{updateDate},
         now(),#{demo}
         )
     </insert>
