@@ -21,7 +21,7 @@ import java.util.Map;
 @Service
 public class IServiceImpl<T> implements IService<T> {
 	@Autowired
-	public IDao<T> iDao;
+	private IDao<T> iDao;
 	/**
 	 * 根据对象 插入一条新数据
 	 * @param model
@@ -32,16 +32,6 @@ public class IServiceImpl<T> implements IService<T> {
     	iDao.insert(model);
     }
 
-	/**
-	 * 根据map参数 插入一条新数据
-	 * @param map
-	 * @return void
-	 * @throws Exception
-	 */
-	public void insertByMap(Map<String,Object> map) throws Exception{
-		iDao.insertByMap(map);
-	}
-    
     /**
      * 删除一条数据
      * @param modelid
@@ -53,17 +43,6 @@ public class IServiceImpl<T> implements IService<T> {
     }
 
 	/**
-	 * 删除一条数据
-	 * @param map
-	 * @return void
-	 * @throws Exception
-	 */
-	public void deleteByMap(Map<String,Object> map) throws Exception{
-		iDao.deleteByMap(map);
-	}
-
-
-	/**
      * 更新一条数据
      * @param model
      * @return void
@@ -73,16 +52,6 @@ public class IServiceImpl<T> implements IService<T> {
     	iDao.update(model);
     }
 
-	/**
-	 * 更新一条数据
-	 * @param map
-	 * @return void
-	 * @throws Exception
-	 */
-	public void updateByMap(Map<String,Object> map) throws Exception{
-		iDao.updateByMap(map);
-	}
-    
     /**
 	 * 查询一条数据 返回对象
 	 * @param id
@@ -100,7 +69,7 @@ public class IServiceImpl<T> implements IService<T> {
 	 * @throws Exception
 	 */
 	@Override
-	public Map<String, Object> selectByMap(Map<String, Object> map) throws Exception {
+	public T selectByMap(Map<String, Object> map) throws Exception {
 		return iDao.selectByMap(map);
 	}
 
@@ -110,7 +79,7 @@ public class IServiceImpl<T> implements IService<T> {
 	 * @return List<Map>
 	 * @throws Exception
 	 */
-	public List<Map<String,Object>> getListByMap(Map<String,Object> map) throws Exception{
+	public List<T> getListByMap(Map<String,Object> map) throws Exception{
 		return iDao.getListByMap(map);
 	}
 }

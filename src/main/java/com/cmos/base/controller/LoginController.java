@@ -2,6 +2,7 @@ package com.cmos.base.controller;
 
 import com.cmos.base.common.MD5Helper;
 import com.cmos.base.result.Result;
+import com.cmos.web.beans.user.User;
 import com.cmos.web.iservice.user.IUserSV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,20 +27,20 @@ public class LoginController extends IController{
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
-			Map<String,Object> loginUser = userSV.selectByMap(params);
+			User loginUser = (User)userSV.selectByMap(params);
 			if(loginUser == null){
 				result.setReturnCode(this.ERROR);
 				result.setReturnMessage("该用户不存在");
 				return result;
-			}else if(!loginUser.get("loginName").equals(params.get("loginName"))){
+			}else if(!loginUser.getLoginName().equals(params.get("loginName"))){
 				result.setReturnCode(this.ERROR);
 				result.setReturnMessage("请输入正确的账号！");
 				return result;
-			}else if(loginUser.get("ifLock").equals("1")){
+			}else if(loginUser.getIfLock().equals("1")){
 				result.setReturnCode(this.ERROR);
 				result.setReturnMessage("该用户已经锁定,请联系管理员！");
 				return result;
-			}else if(!loginUser.get("passWord").equals(MD5Helper.getMD5(params.get("passWord")+""))){
+			}else if(!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("passWord")+""))){
 				result.setReturnCode(this.ERROR);
 				result.setReturnMessage("登录密码不正确！");
 				return result;

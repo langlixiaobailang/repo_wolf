@@ -10,9 +10,17 @@ import java.util.Date;
  */
 @Data
 public class User implements Serializable{
-    private Long userId;
-    private String realName;
+    private Long id;
+    private Long deptId;
+    private String userName;
     private String loginName;
+    private String password;
     private String mobile;
-    private Date createDate;
+    private String email;
+    private Long ifAdmin;
+    private Long ifLock;
+    private Long ifDelete;
+    private Date updateDate;
+    private Date  createDate;
+    private String demo;
 }

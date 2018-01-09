@@ -36,7 +36,7 @@ public class UserController extends IController{
 				return result;
 			}
 			paramMap.put("id",2103L);
-			Map<String,Object> map = userSV.selectByMap(paramMap);
+			List<User> map = (List<User>) userSV.selectByMap(paramMap);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.SELECT_SUCCESS_MO_MSG);
 			result.setObject(map);
@@ -58,7 +58,7 @@ public class UserController extends IController{
 		try {
 			PageHelper.startPage(this.pageNum,this.pageSize);
 			PageHelper.orderBy("user_id desc");
-			List<Map<String,Object>> list = userSV.getListByMap(params);
+			List<User> list = (List<User>)userSV.getListByMap(params);
 			PageInfo p = new PageInfo (list);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.SELECT_SUCCESS_MSG);

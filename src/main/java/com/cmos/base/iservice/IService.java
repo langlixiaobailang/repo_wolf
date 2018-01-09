@@ -24,12 +24,12 @@ public interface IService<T> {
      void insert(T model) throws Exception;
 
 	/**
-	 * 根据map参数，插入一条新数据
-	 * @param map
+	 * 删除一条数据
+	 * @param modelid
 	 * @return void
 	 * @throws Exception
 	 */
-	void insertByMap(Map<String,Object> map) throws Exception;
+	void delete(Long modelid) throws Exception;
 
 	/**
 	 * 更新一条数据
@@ -39,33 +39,8 @@ public interface IService<T> {
 	 */
 	 void update(T model) throws Exception;
 
-	/**
-	 * 根据map参数，更新一条数据
-	 * @param map
-	 * @return void
-	 * @throws Exception
-	 */
-	void updateByMap(Map<String,Object> map) throws Exception;
-
     /**
-     * 删除一条数据
-     * @param modelid
-     * @return void
-     * @throws Exception
-     */
-     void delete(Long modelid) throws Exception;
-
-	/**
-	 * 根据map参数，删除一条数据
-	 * @param, map
-	 * @return void
-	 * @throws Exception
-	 */
-	void deleteByMap(Map<String,Object> map) throws Exception;
-
-
-    /**
-	 * 查询一条数据
+	 * 根据id查询一条数据
 	 * @param id
 	 * @return T
 	 * @throws Exception
@@ -75,15 +50,15 @@ public interface IService<T> {
 	/**
 	 * 根据map参数，查询一条数据
 	 * @param map
-	 * @return map
+	 * @return T
 	 * @throws Exception
 	 */
-	Map<String,Object> selectByMap(Map<String,Object> map) throws Exception;
+	 T selectByMap(Map<String,Object> map) throws Exception;
 	/**
 	 * 根据map参数，获取分页列表
 	 * @param map
 	 * @return map
 	 * @throws Exception
 	 */
-	List<Map<String,Object>> getListByMap(Map<String,Object> map) throws Exception;
+	List<T> getListByMap(Map<String,Object> map) throws Exception;
 }
