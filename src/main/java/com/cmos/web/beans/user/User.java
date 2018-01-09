@@ -15,7 +15,7 @@ public class User implements Serializable{
     private String userName;
     private String loginName;
     private String password;
-    private String mobile;
+    private String phone;
     private String email;
     private Long ifAdmin;
     private Long ifLock;

@@ -28,18 +28,18 @@ public class PowerFilter implements Filter {
         res.setHeader("P3P","CP=\"NON DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAa IVDa CONa HISa TELa OTPa OUR UNRa IND UNI COM NAV INT DEM CNT PRE LOC\"");
         //配置如果链接中有login关键字放行，否则进行拦截
         String servletPath = ((HttpServletRequest) request).getServletPath();
-        //if(servletPath.indexOf("login") != -1){
+        if(servletPath.indexOf("login") != -1){
             chain.doFilter(req, res);
-//        }else{
-//            //判断是否登录,未登录跳转到登录页面
-//            if(req.getSession().getAttribute("longUser") == null ){
-//                Logger.info("用户未登录..........");
-//                logout(res,"用户未登录");
-//            }else{
-//                chain.doFilter(req, res);
-//            }
-//
-//        }
+        }else{
+            //判断是否登录,未登录跳转到登录页面
+            if(req.getSession().getAttribute("loginUser") == null ){
+                Logger.info(req.getSession().getAttribute("loginUser")+"********用户未登录..........");
+                logout(res,"用户未登录");
+            }else{
+                chain.doFilter(req, res);
+            }
+
+        }
     }
     private void logout(HttpServletResponse res, String tipMessage) throws IOException {
         res.setHeader("Content-type", "text/html;charset=UTF-8");

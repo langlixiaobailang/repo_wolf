@@ -40,7 +40,7 @@ public class LoginController extends IController{
 				result.setReturnCode(this.ERROR);
 				result.setReturnMessage("该用户已经锁定,请联系管理员！");
 				return result;
-			}else if(!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("passWord")+""))){
+			}else if(!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+""))){
 				result.setReturnCode(this.ERROR);
 				result.setReturnMessage("登录密码不正确！");
 				return result;
@@ -51,6 +51,7 @@ public class LoginController extends IController{
 				return result;
 			}
 		} catch (Exception e) {
+			logger.error("查询用户报错",e);
 			e.printStackTrace();
 		}
 		return result;

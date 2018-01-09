@@ -35,7 +35,6 @@ public class MD5Helper
   public static String getMD5(String str)
   {
     byte[] bs = str.getBytes();
-
     return getMD5ToByte(bs);
   }
 
@@ -189,8 +188,8 @@ public class MD5Helper
     stringbuffer.append(c1);
   }
   
-  public static void main(String args[]){
-	  String aaa=getMD5("123456");
-	  System.out.print(aaa);
-  } 
+//  public static void main(String args[]){
+//	  String aaa=getMD5("123456");
+//	  System.out.print(aaa);
+//  }
 }

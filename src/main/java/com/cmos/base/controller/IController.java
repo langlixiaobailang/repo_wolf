@@ -15,8 +15,8 @@ public class IController {
     public static final  String SELECT_ERROR_MSG = "查询列表失败";
     public static final  String SELECT_SUCCESS_MO_MSG = "查询对象成功";
     public static final  String SELECT_ERROR_MO_MSG = "查询对象失败";
-    public static final  String INSERT_SUCCESS_MSG = "保存成功";
-    public static final  String INSERT_ERROR_MSG = "保存失败";
+    public static final  String SAVE_SUCCESS_MSG = "保存成功";
+    public static final  String SAVE_ERROR_MSG = "保存失败";
     public static final  String UPDATE_SUCCESS_MSG = "修改成功";
     public static final  String UPDATE_ERROR_MSG = "修改失败";
     public static final  String DELETE_SUCCESS_MSG = "删除成功";

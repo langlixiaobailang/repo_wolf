@@ -9,9 +9,14 @@
 <body>
 <div id="app"></div>
 <div>
-  用户名：<input type="text" id ="loginName" value = "" />
-  密码：<input type="password" id ="password" value = "" />
+  用户名：<input type="text" id ="loginName" value = "admin" />
+  密码：<input type="password" id ="password" value = "123456" />
+  <input type="hidden" id ="id" value = "35" />
   <input type="button" id="login" value="登录"/>
+  <input type="button" id="queryM" value="查询对象"/>
+  <input type="button" id="queryList" value="查询列表"/>
+  <input type="button" id="save" value="添加"/>
+  <input type="button" id="update" value="修改"/>
 </div>
 
 <script type="text/javascript">
@@ -31,6 +36,53 @@
       }
     });
   });
+
+  $("#queryM").click( function () {
+    $.ajax({
+      url : "user/get-user",
+      type : "GET",
+      data : {},
+      success : function(result ,textStatus, jqXHR) {
+        if(result.returnCode == "200"){
+          alert(result.returnCode + " =="+result.returnMessage);
+        }else{
+          alert(result.returnCode + " =="+result.returnMessage);
+        }
+      }
+    });
+  });
+
+  $("#queryList").click( function () {
+    $.ajax({
+      url : "user/get-user-list",
+      type : "GET",
+      data : {},
+      success : function(result ,textStatus, jqXHR) {
+        if(result.returnCode == "200"){
+          alert(result.returnCode + " =="+result.returnMessage);
+        }else{
+          alert(result.returnCode + " =="+result.returnMessage);
+        }
+      }
+    });
+  });
+
+  $("#save").click( function () {
+    var id = $("#id").val();
+    $.ajax({
+      url : "user/save",
+      type : "GET",
+      data : {"id":id},
+      success : function(result ,textStatus, jqXHR) {
+        if(result.returnCode == "200"){
+          alert(result.returnCode + " =="+result.returnMessage);
+        }else{
+          alert(result.returnCode + " =="+result.returnMessage);
+        }
+      }
+    });
+  });
+
 </script>
 </body>
 </html>

@@ -43,6 +43,15 @@ public class IServiceImpl<T> implements IService<T> {
     }
 
 	/**
+	 * 批量删除
+	 * @return void
+	 * @throws Exception
+	 */
+	public void batchDelete(List<Integer> ids) throws Exception{
+		iDao.batchDelete(ids);
+	}
+
+	/**
      * 更新一条数据
      * @param model
      * @return void

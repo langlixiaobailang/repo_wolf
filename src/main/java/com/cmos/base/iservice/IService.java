@@ -32,6 +32,13 @@ public interface IService<T> {
 	void delete(Long modelid) throws Exception;
 
 	/**
+	 * 批量删除
+	 * @return void
+	 * @throws Exception
+	 */
+	void batchDelete(List<Integer> ids) throws Exception;
+
+	/**
 	 * 更新一条数据
 	 * @param model
 	 * @return void
