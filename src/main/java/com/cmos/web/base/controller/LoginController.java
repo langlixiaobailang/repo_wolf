@@ -1,20 +1,23 @@
-package com.cmos.base.controller;
+package com.cmos.web.base.controller;
 
-import com.cmos.base.common.MD5Helper;
-import com.cmos.base.result.Result;
+import com.cmos.web.base.common.MD5Helper;
+import com.cmos.web.base.result.Result;
 import com.cmos.web.beans.user.User;
 import com.cmos.web.iservice.user.IUserSV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/login")
-public class LoginController extends IController{
+public class LoginController extends IController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private IUserSV userSV;

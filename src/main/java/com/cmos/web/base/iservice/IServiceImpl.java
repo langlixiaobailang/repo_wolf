@@ -1,6 +1,6 @@
-package com.cmos.base.iservice;
+package com.cmos.web.base.iservice;
 
-import com.cmos.base.dao.IDao;
+import com.cmos.web.base.dao.IDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

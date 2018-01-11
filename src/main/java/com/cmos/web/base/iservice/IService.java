@@ -1,4 +1,4 @@
-package com.cmos.base.iservice;
+package com.cmos.web.base.iservice;
 
 import java.util.List;
 import java.util.Map;
@@ -52,7 +52,7 @@ public interface IService<T> {
 	 * @return T
 	 * @throws Exception
 	 */
-     T select( Long id) throws Exception;
+     T select(Long id) throws Exception;
 
 	/**
 	 * 根据map参数，查询一条数据
@@ -60,12 +60,12 @@ public interface IService<T> {
 	 * @return T
 	 * @throws Exception
 	 */
-	 T selectByMap(Map<String,Object> map) throws Exception;
+	 T selectByMap(Map<String, Object> map) throws Exception;
 	/**
 	 * 根据map参数，获取分页列表
 	 * @param map
 	 * @return map
 	 * @throws Exception
 	 */
-	List<T> getListByMap(Map<String,Object> map) throws Exception;
+	List<T> getListByMap(Map<String, Object> map) throws Exception;
 }

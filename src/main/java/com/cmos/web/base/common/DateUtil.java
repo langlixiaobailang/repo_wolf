@@ -1,21 +1,16 @@
-package com.cmos.base.common;
+package com.cmos.web.base.common;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.context.i18n.LocaleContextHolder;
+import java.util.*;
+
 /**
  * 时间格式类
  * @author hy 2018年1月4日10:10:58

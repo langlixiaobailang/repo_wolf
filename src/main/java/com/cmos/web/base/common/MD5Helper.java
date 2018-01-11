@@ -1,9 +1,6 @@
-package com.cmos.base.common;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+package com.cmos.web.base.common;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.MappedByteBuffer;
@@ -26,7 +23,7 @@ public class MD5Helper
   static {
     try { messagedigest = MessageDigest.getInstance("MD5");
     } catch (NoSuchAlgorithmException nsaex) {
-      System.err.println(MD5Helper.class.getName() + 
+      System.err.println(MD5Helper.class.getName() +
         "初始化失败，MessageDigest不支持MD5Util。");
       nsaex.printStackTrace();
     }

@@ -1,4 +1,4 @@
-package com.cmos.base.dao;
+package com.cmos.web.base.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -61,7 +61,7 @@ public interface IDao<T> {
 	 * @return map
 	 * @throws Exception
 	 */
-	 T selectByMap(Map<String,Object> map) throws Exception;
+	 T selectByMap(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 查询列表
@@ -69,5 +69,5 @@ public interface IDao<T> {
 	 * @return map
 	 * @throws Exception
 	 */
-	List<T> getListByMap(Map<String,Object> map) throws Exception;
+	List<T> getListByMap(Map<String, Object> map) throws Exception;
 }

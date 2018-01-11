@@ -1,7 +1,7 @@
 package com.cmos.web.controller.user;
 
-import com.cmos.base.controller.IController;
-import com.cmos.base.result.Result;
+import com.cmos.web.base.controller.IController;
+import com.cmos.web.base.result.Result;
 import com.cmos.web.beans.user.User;
 import com.cmos.web.iservice.user.IUserSV;
 import com.github.pagehelper.PageHelper;

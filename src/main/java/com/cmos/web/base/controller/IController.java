@@ -1,4 +1,4 @@
-package com.cmos.base.controller;
+package com.cmos.web.base.controller;
 
 import com.cmos.web.beans.user.User;
 

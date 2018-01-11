@@ -1,6 +1,6 @@
 package com.cmos.web.filter;
 
-import com.cmos.base.controller.LoginController;
+import com.cmos.web.base.controller.LoginController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

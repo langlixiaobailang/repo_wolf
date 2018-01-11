@@ -1,6 +1,6 @@
 package com.cmos.web.dao.user;
 
-import com.cmos.base.dao.IDao;
+import com.cmos.web.base.dao.IDao;
 
 /**
  * Created by  on 2017/12/21.

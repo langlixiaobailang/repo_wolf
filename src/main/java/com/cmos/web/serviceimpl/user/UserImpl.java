@@ -1,6 +1,6 @@
 package com.cmos.web.serviceimpl.user;
 
-import com.cmos.base.iservice.IServiceImpl;
+import com.cmos.web.base.iservice.IServiceImpl;
 import com.cmos.web.iservice.user.IUserSV;
 import org.springframework.stereotype.Service;
 

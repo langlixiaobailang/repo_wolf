@@ -1,4 +1,4 @@
-package com.cmos.base.result;
+package com.cmos.web.base.result;
 
 /**
  * Created by Administrator on 2018/1/3.
@@ -9,6 +9,7 @@ import com.github.pagehelper.Page;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+
 public class Result<T> implements Serializable {
 
     public static final String OK = "0";
