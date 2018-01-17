@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.cmos.web.dao.sys.SysLogDao">
+    <resultMap id="SysLogResultMap" type="com.cmos.web.beans.sys.SysLog" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="log_type_name" property="logTypeName" jdbcType="VARCHAR" />
+        <result column="sys_log_module" property="sysLogModule" jdbcType="VARCHAR" />
+        <result column="sys_log_methods" property="sysLogMethods" jdbcType="VARCHAR" />
+        <result column="sys_log_result" property="sysLogResult" jdbcType="VARCHAR" />
+        <result column="sys_log_ip" property="sysLogIp" jdbcType="VARCHAR" />
+        <result column="log_handle_times" property="logHandleTimes" jdbcType="BIGINT" />
+        <result column="log_create_date" property="logCreateDate" jdbcType="TIMESTAMP" />
+        <result column="sys_log_desc" property="sysLogDesc" jdbcType="VARCHAR" />
+        <result column="log_error_msg" property="logErrorMsg" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 添加方法 -->
+    <insert id="insert" parameterType="com.cmos.web.beans.sys.SysLog"
+            useGeneratedKeys="true"  keyProperty="id">
+        insert into sm_sys_user
+        (dept_id,user_name,login_name,password,phone,
+        email,if_admin,if_lock,if_delete,update_date,
+        create_date,demo
+        )
+        values (
+        #{deptId},#{userName},#{loginName},#{password},#{phone},
+        #{email},#{ifAdmin},0,0,#{updateDate},
+        now(),#{demo}
+        )
+    </insert>
+</mapper>

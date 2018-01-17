@@ -1,6 +1,5 @@
 package com.cmos.web.filter;
 
-import com.cmos.web.base.controller.LoginController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +14,7 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "PowerFilter",urlPatterns = "/*")
 public class PowerFilter implements Filter {
-    private static final Logger Logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger Logger = LoggerFactory.getLogger(PowerFilter.class);
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Logger.info("权限控制过滤器启动中..........");

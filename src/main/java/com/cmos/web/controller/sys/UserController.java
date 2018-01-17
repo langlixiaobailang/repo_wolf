@@ -1,11 +1,10 @@
-package com.cmos.web.controller.user;
+package com.cmos.web.controller.sys;
 
 import com.cmos.web.annotation.LoggerManager;
-import com.cmos.web.base.controller.IController;
-import com.cmos.web.base.result.Result;
-import com.cmos.web.beans.user.User;
+import com.cmos.web.beans.sys.User;
 import com.cmos.web.common.enums.LogType;
-import com.cmos.web.iservice.user.IUserSV;
+import com.cmos.web.common.result.Result;
+import com.cmos.web.iservice.sys.IUserSV;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;

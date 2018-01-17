@@ -1,7 +1,6 @@
-package com.cmos.web.base.controller;
+package com.cmos.web.controller.sys;
 
-import com.cmos.web.beans.user.User;
-import com.cmos.web.common.enums.LogType;
+import com.cmos.web.beans.sys.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

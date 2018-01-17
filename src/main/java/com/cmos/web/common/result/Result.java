@@ -1,4 +1,4 @@
-package com.cmos.web.base.result;
+package com.cmos.web.common.result;
 
 /**
  * Created by Administrator on 2018/1/3.
@@ -64,7 +64,7 @@ public class Result<T> implements Serializable {
      * @param returnCode 状态码
      * @param returnMessage 状态描述
      * */
-    public Result(String returnCode, String returnMessage,Object object) {
+    public Result(String returnCode, String returnMessage, Object object) {
         this(null);
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;

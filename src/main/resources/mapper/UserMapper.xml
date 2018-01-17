@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.cmos.web.dao.user.UserDao">
-    <resultMap id="UserResultMap" type="com.cmos.web.beans.user.User" >
+<mapper namespace = "com.cmos.web.dao.sys.UserDao">
+    <resultMap id="UserResultMap" type="com.cmos.web.beans.sys.User" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="dept_id" property="deptId" jdbcType="BIGINT" />
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -44,7 +44,7 @@
     </select>
 
     <!-- 添加方法 -->
-    <insert id="insert" parameterType="com.cmos.web.beans.user.User"
+    <insert id="insert" parameterType="com.cmos.web.beans.sys.User"
             useGeneratedKeys="true"  keyProperty="id">
         insert into sm_sys_user
         (dept_id,user_name,login_name,password,phone,
@@ -59,7 +59,7 @@
     </insert>
 
     <!-- 修改方法 -->
-    <update id="update" parameterType="com.cmos.web.beans.user.User">
+    <update id="update" parameterType="com.cmos.web.beans.sys.User">
         update sm_sys_user
         set
         dept_id=#{deptId},user_name=#{userName},login_name=#{loginName},password=#{password},phone=#{phone},

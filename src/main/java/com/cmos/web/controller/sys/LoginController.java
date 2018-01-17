@@ -1,11 +1,11 @@
-package com.cmos.web.base.controller;
+package com.cmos.web.controller.sys;
 
 import com.cmos.web.annotation.LoggerManager;
-import com.cmos.web.base.result.Result;
-import com.cmos.web.beans.user.User;
+import com.cmos.web.beans.sys.User;
 import com.cmos.web.common.enums.LogType;
+import com.cmos.web.common.result.Result;
 import com.cmos.web.common.utils.MD5Helper;
-import com.cmos.web.iservice.user.IUserSV;
+import com.cmos.web.iservice.sys.IUserSV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,6 @@ public class LoginController extends IController {
 				result.setReturnMessage("当前用户被锁定 请联系管理员！");
 				return result;
 			}else{
-				int aaa = 10/0;
 				result.setReturnCode(this.SUCCESS);
 				result.setReturnMessage("登录成功！");
 				this.getSession(request).setAttribute("loginUser",loginUser);

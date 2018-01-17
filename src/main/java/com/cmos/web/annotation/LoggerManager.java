@@ -14,5 +14,5 @@ import java.lang.annotation.*;
 public @interface LoggerManager {
      LogType type() default LogType.SPACE;
      String module()  default "";  //模块
-     String description() default ""; //执行是否成功
+     String description() default ""; //描述信息
 }

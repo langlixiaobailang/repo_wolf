@@ -1,19 +1,19 @@
 package com.cmos.web.Aspect;
 
 import com.cmos.web.annotation.LoggerManager;
-import com.cmos.web.base.result.Result;
+import com.cmos.web.common.result.Result;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.lang.model.element.Element;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -55,7 +55,7 @@ public class LoggerAspect {
      * @throws Throwable
      */
     @Around("loggerManagerCut()")
-    public Result<Object>  aroundLogger(ProceedingJoinPoint pjp) throws Throwable{
+    public Result<Object> aroundLogger(ProceedingJoinPoint pjp) throws Throwable{
         logger.info("******Around advice ******");
         Result<Object> result = new Result<>(); //返回对象
         Map<String, Object> map = getControllerMethodDescription(pjp);
