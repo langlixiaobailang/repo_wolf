@@ -1,8 +1,10 @@
 package com.cmos.web.controller.user;
 
+import com.cmos.web.annotation.LoggerManager;
 import com.cmos.web.base.controller.IController;
 import com.cmos.web.base.result.Result;
 import com.cmos.web.beans.user.User;
+import com.cmos.web.common.enums.LogType;
 import com.cmos.web.iservice.user.IUserSV;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -74,30 +76,55 @@ public class UserController extends IController{
 		return  null;
 	}
 	/**
-	 * 添加与修改
+	 * 添加
 	 * @param params
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/save",method = RequestMethod.POST)
-	public Result<Object> save(@RequestParam Map<String, Object> params, HttpServletRequest request){
+	@LoggerManager(type = LogType.INSERT,module = "用户",description = "添加成功！")
+	@RequestMapping(value = "/insert",method = RequestMethod.POST)
+	public Result<Object> insert(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
-			//判断id为空添加，否则是修改
 			User user = new User();
             if(StringUtils.isBlank(params.get("id")+"")){
 				userSV.insert(user);
 				result.setReturnCode(this.SUCCESS);
-				result.setReturnMessage(this.SAVE_SUCCESS_MSG);
-			}else{ //先查询对象在修改
-				user = (User)userSV.selectByMap(params);
-				userSV.update(user);
-				result.setReturnCode(this.SUCCESS);
-				result.setReturnMessage(this.UPDATE_SUCCESS_MSG);
+				result.setReturnMessage(this.INSERT_SUCCESS_MSG);
 			}
 			return result;
 		} catch (Exception e) {
-			logger.error(this.SAVE_ERROR_MSG,e);
+			logger.error(this.INSERT_SUCCESS_MSG,e);
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 修改
+	 * @param params
+	 * @param request
+	 * @return
+	 */
+	@LoggerManager(type = LogType.INSERT,module = "用户",description = "修改成功！")
+	@RequestMapping(value = "/update",method = RequestMethod.POST)
+	public Result<Object> update(@RequestParam Map<String, Object> params, HttpServletRequest request){
+		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
+		try {
+			//判断id为空添加，否则是修改
+			if(StringUtils.isBlank(params.get("id")+"")){
+				result.setReturnCode(this.ERROR);
+				result.setReturnMessage(this.UPDATE_ERROR_MSG);
+				return result;
+			}
+			 //先查询对象在修改
+			User user = (User)userSV.selectByMap(params);
+			userSV.update(user);
+			result.setReturnCode(this.SUCCESS);
+			result.setReturnMessage(this.UPDATE_SUCCESS_MSG);
+			return result;
+		} catch (Exception e) {
+			logger.error(this.UPDATE_ERROR_MSG,e);
 			e.printStackTrace();
 		}
 		return null;

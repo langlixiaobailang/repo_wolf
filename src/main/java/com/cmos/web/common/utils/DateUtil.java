@@ -1,4 +1,4 @@
-package com.cmos.web.base.common;
+package com.cmos.web.common.utils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

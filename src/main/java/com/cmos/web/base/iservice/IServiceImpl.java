@@ -1,6 +1,8 @@
 package com.cmos.web.base.iservice;
 
+import com.cmos.web.annotation.LoggerManager;
 import com.cmos.web.base.dao.IDao;
+import com.cmos.web.common.enums.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,7 @@ public class IServiceImpl<T> implements IService<T> {
 	 * @return void
 	 * @throws Exception
 	 */
-    public void insert(T model) throws Exception{
+    public void insert(T model){
     	iDao.insert(model);
     }
 
@@ -38,7 +40,7 @@ public class IServiceImpl<T> implements IService<T> {
      * @return void
      * @throws Exception
      */
-    public void delete(Long modelid) throws Exception{
+    public void delete(Long modelid){
     	iDao.delete(modelid);
     }
 
@@ -47,7 +49,7 @@ public class IServiceImpl<T> implements IService<T> {
 	 * @return void
 	 * @throws Exception
 	 */
-	public void batchDelete(List<Integer> ids) throws Exception{
+	public void batchDelete(List<Integer> ids){
 		iDao.batchDelete(ids);
 	}
 
@@ -57,7 +59,7 @@ public class IServiceImpl<T> implements IService<T> {
      * @return void
      * @throws Exception
      */
-    public void update(T model) throws Exception{
+    public void update(T model){
     	iDao.update(model);
     }
 
@@ -67,7 +69,7 @@ public class IServiceImpl<T> implements IService<T> {
 	 * @return T
 	 * @throws Exception
 	 */
-    public T select(Long id) throws Exception{
+    public T select(Long id){
     	return iDao.select(id);
     }
 
@@ -78,7 +80,9 @@ public class IServiceImpl<T> implements IService<T> {
 	 * @throws Exception
 	 */
 	@Override
-	public T selectByMap(Map<String, Object> map) throws Exception {
+
+	public T selectByMap(Map<String, Object> map){
+		//int aaa = 10/0;
 		return iDao.selectByMap(map);
 	}
 
@@ -88,7 +92,7 @@ public class IServiceImpl<T> implements IService<T> {
 	 * @return List<Map>
 	 * @throws Exception
 	 */
-	public List<T> getListByMap(Map<String,Object> map) throws Exception{
+	public List<T> getListByMap(Map<String,Object> map){
 		return iDao.getListByMap(map);
 	}
 }

@@ -1,4 +1,4 @@
-package com.cmos.web.base.config;//package com.cmos.web.config;
+package com.cmos.web.common.redis;//package com.cmos.web.config;
 //
 ///**
 // * Created by Administrator on 2017/12/27.

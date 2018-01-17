@@ -1,5 +1,8 @@
 package com.cmos.web.base.iservice;
 
+import com.cmos.web.annotation.LoggerManager;
+import com.cmos.web.common.enums.LogType;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,24 +22,22 @@ public interface IService<T> {
 	 * 插入一条新数据
 	 * @param model
 	 * @return void
-	 * @throws Exception
 	 */
-     void insert(T model) throws Exception;
+     void insert(T model);
 
 	/**
 	 * 删除一条数据
 	 * @param modelid
 	 * @return void
-	 * @throws Exception
 	 */
-	void delete(Long modelid) throws Exception;
+	void delete(Long modelid);
 
 	/**
 	 * 批量删除
 	 * @return void
 	 * @throws Exception
 	 */
-	void batchDelete(List<Integer> ids) throws Exception;
+	void batchDelete(List<Integer> ids);
 
 	/**
 	 * 更新一条数据
@@ -44,7 +45,8 @@ public interface IService<T> {
 	 * @return void
 	 * @throws Exception
 	 */
-	 void update(T model) throws Exception;
+	 @LoggerManager(type = LogType.UPDATE)
+	 void update(T model);
 
     /**
 	 * 根据id查询一条数据
@@ -52,7 +54,7 @@ public interface IService<T> {
 	 * @return T
 	 * @throws Exception
 	 */
-     T select(Long id) throws Exception;
+     T select(Long id);
 
 	/**
 	 * 根据map参数，查询一条数据
@@ -60,12 +62,12 @@ public interface IService<T> {
 	 * @return T
 	 * @throws Exception
 	 */
-	 T selectByMap(Map<String, Object> map) throws Exception;
+	 T selectByMap(Map<String, Object> map);
 	/**
 	 * 根据map参数，获取分页列表
 	 * @param map
 	 * @return map
 	 * @throws Exception
 	 */
-	List<T> getListByMap(Map<String, Object> map) throws Exception;
+	List<T> getListByMap(Map<String, Object> map);
 }

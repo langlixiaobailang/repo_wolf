@@ -1,8 +1,10 @@
 package com.cmos.web.base.controller;
 
-import com.cmos.web.base.common.MD5Helper;
+import com.cmos.web.annotation.LoggerManager;
 import com.cmos.web.base.result.Result;
 import com.cmos.web.beans.user.User;
+import com.cmos.web.common.enums.LogType;
+import com.cmos.web.common.utils.MD5Helper;
 import com.cmos.web.iservice.user.IUserSV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,35 +29,29 @@ public class LoginController extends IController {
 	 * @return 导航到
 	 */
 	@RequestMapping(value = "/login-check",method = RequestMethod.POST)
+	@LoggerManager(type = LogType.LOGIN,module = "登录",description = "用户登录")
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
-		try {
+		try{
 			User loginUser = (User)userSV.selectByMap(params);
-			if(loginUser == null){
+			if(null == loginUser || !loginUser.getLoginName().equals(params.get("loginName"))
+					||!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+"")) ){
 				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("该用户不存在");
-				return result;
-			}else if(!loginUser.getLoginName().equals(params.get("loginName"))){
-				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("请输入正确的账号！");
+				result.setReturnMessage("用户名或密码错误！");
 				return result;
 			}else if(loginUser.getIfLock().equals("1")){
 				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("该用户已经锁定,请联系管理员！");
-				return result;
-			}else if(!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+""))){
-				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("登录密码不正确！");
+				result.setReturnMessage("当前用户被锁定 请联系管理员！");
 				return result;
 			}else{
+				int aaa = 10/0;
 				result.setReturnCode(this.SUCCESS);
 				result.setReturnMessage("登录成功！");
 				this.getSession(request).setAttribute("loginUser",loginUser);
 				return result;
 			}
-		} catch (Exception e) {
-			logger.error("查询用户报错",e);
-			e.printStackTrace();
+		}catch (Exception e){
+            logger.info(e.getMessage());
 		}
 		return result;
 	}
@@ -64,6 +60,7 @@ public class LoginController extends IController {
 	 * @return 导航到
 	 */
 	@RequestMapping(value = "/login-out",method = RequestMethod.POST)
+	@LoggerManager(type = LogType.LOGINOUT)
 	public Result<Object> loginOut(@RequestParam Map<String, Object> params, HttpServletRequest request){
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		this.getSession(request).removeAttribute("loginUser");
