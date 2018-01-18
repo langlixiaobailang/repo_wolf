@@ -43,7 +43,6 @@ public class LoginController extends IController {
 			result.setReturnMessage("当前用户被锁定 请联系管理员！");
 			return result;
 		}else{
-			//int a = 1+Integer.valueOf("sdfd");
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage("登录成功！");
 			request.getSession().setAttribute("loginUser",loginUser);

@@ -3,6 +3,7 @@ package com.cmos.web.Aspect;
 import com.cmos.web.annotation.LoggerManager;
 import com.cmos.web.beans.sys.SysLog;
 import com.cmos.web.beans.sys.User;
+import com.cmos.web.common.enums.LogType;
 import com.cmos.web.common.result.Result;
 import com.cmos.web.common.utils.ToolUtils;
 import com.cmos.web.controller.sys.IController;
@@ -174,18 +175,20 @@ public class LoggerAspect {
         try {
             targetClass = Class.forName(targetName);
         } catch (ClassNotFoundException e) {
-           logger.error("",e.getMessage());
+           logger.error("不能得到调用的类",e.getMessage());
         }
         Method[] methods = targetClass.getMethods();
         for (Method method : methods) {
             if (method.getName().equals(methodName)) {
                 Class[] clazzs = method.getParameterTypes();
                 if (clazzs.length == arguments.length) {
-                    map.put("module", method.getAnnotation(LoggerManager.class).module());
+                    LogType logType = (LogType)method.getAnnotation(LoggerManager.class).type();
                     map.put("methods", joinPoint.getSignature().getDeclaringTypeName() + "."
                             + joinPoint.getSignature().getName());
+                    map.put("type",logType.GetDescription());
+                    map.put("module", method.getAnnotation(LoggerManager.class).module());
                     String de = method.getAnnotation(LoggerManager.class).description();
-                    if(org.apache.commons.lang3.StringUtils.isNotBlank(de)){
+                    if(org.apache.commons.lang3.StringUtils.isBlank(de)){
                         de="执行成功!";
                     };
                     map.put("description", de);
