@@ -25,6 +25,7 @@ public class GlobalExceptionHandler {
         result.setObject("");
         result.setReturnCode("-1");
         result.setReturnMessage("内部错误！");
+        e.printStackTrace();
         return result;
     }
 }

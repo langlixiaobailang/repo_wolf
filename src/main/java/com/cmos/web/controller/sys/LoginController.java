@@ -29,7 +29,7 @@ public class LoginController extends IController {
 	 * @return 导航到
 	 */
 	@RequestMapping(value = "/login-check",method = RequestMethod.POST)
-	@LoggerManager(type = LogType.LOGIN,module = "登录",description = "用户登录")
+	@LoggerManager(type = LogType.LOGIN,module = "用户",description = "用户登录")
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request) throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		User loginUser = userSV.selectByMap(params);
@@ -43,6 +43,7 @@ public class LoginController extends IController {
 			result.setReturnMessage("当前用户被锁定 请联系管理员！");
 			return result;
 		}else{
+			int aa = 10/0;
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage("登录成功！");
 			request.getSession().setAttribute("loginUser",loginUser);

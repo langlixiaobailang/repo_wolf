@@ -33,6 +33,9 @@ import java.util.Map;
 @Component // 受spring管理的容器
 public class LoggerAspect {
     private static final Logger logger = LoggerFactory.getLogger(LoggerAspect.class);
+    private Long startTimes = 0L;
+    private Long endTimes = 0L;
+    private Long executeTime = 0L;
 
     @Autowired
     private ISysLogSV sysLogSV;
@@ -59,57 +62,19 @@ public class LoggerAspect {
      * 环绕通知方法前必须throws 这样出现异常才能捕捉
      * @throws Throwable
      */
-//    @Around("loggerManagerCut()")
-//    public void aroundLogger(ProceedingJoinPoint pjp) throws Throwable{
-//        logger.info("******Around advice ******");
-//        // 接收到请求内容
-//        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//        HttpServletRequest request = attributes.getRequest();
-//        User user = ToolUtils.getLoginUser(request);
-//        String ip = ToolUtils.getRemoteAddr(request);
-//        //Result<Object> result = new Result<>(); //返回对象
-//        Map<String, Object> map = getControllerMethodDescription(pjp);
-//        Long executeTime = 0L;
-//        try{
-//            long startTime = System.currentTimeMillis();
-//            pjp.proceed(); //调用方法
-//            long endTime = System.currentTimeMillis();
-//            executeTime = endTime-startTime;
-//
-//            SysLog sysLog = new SysLog();
-//            sysLog.setLogTypeName((String)map.get("type"));
-//            sysLog.setSysLogModule((String)map.get("module"));
-//            sysLog.setSysLogMethods((String)map.get("methods"));
-//            sysLog.setSysLogResult("执行成功");
-//            sysLog.setSysLogIp(ip);
-//            sysLog.setLogHandleTimes(executeTime);
-//            sysLog.setLogCreateDate(new Date());
-//            sysLog.setSysLogDesc((String)map.get("description"));
-//            if(user != null){
-//                sysLog.setLogCreateUser(user.getUserName());
-//            }
-//            sysLogSV.insert(sysLog);
-//            logger.error("保存日志成功！");
-//         }catch (Throwable throwable){
-//            //异常 表示方法调用失败 保存操作日志
-//            SysLog errSysLog = new SysLog();
-//            errSysLog.setLogTypeName((String)map.get("type"));
-//            errSysLog.setSysLogModule((String)map.get("module"));
-//            errSysLog.setSysLogMethods((String)map.get("methods"));
-//            errSysLog.setSysLogResult("执行失败");
-//            errSysLog.setSysLogIp(ip);
-//            errSysLog.setLogHandleTimes(executeTime);
-//            errSysLog.setLogCreateDate(new Date());
-//            errSysLog.setSysLogDesc((String)map.get("description"));
-//            errSysLog.setLogErrorMsg(throwable.getMessage());
-//            if(user != null){
-//                errSysLog.setLogCreateUser(user.getUserName());
-//            }
-//            sysLogSV.insert(errSysLog);
-//            logger.error("保存异常日志成功！异常信息为：" + throwable.getMessage());
-//            throw throwable;
-//         }
-//    }
+    @Around("loggerManagerCut()")
+    public Object aroundLogger(ProceedingJoinPoint pjp) throws Throwable{
+        Object result = null;
+        try {
+            startTimes = System.currentTimeMillis();
+            result = pjp.proceed();
+            endTimes = System.currentTimeMillis();
+            executeTime = endTimes- startTimes; //得到的是毫秒   1秒=1000毫秒
+        } catch (Throwable e) {
+            throw e;
+        }
+        return result;
+    }
 
     @AfterReturning(pointcut = "loggerManagerCut()",returning = "object")//打印输出结果
     public void AfterReturning(JoinPoint joinPoint,Object object) throws Exception{
@@ -124,7 +89,7 @@ public class LoggerAspect {
         sysLog.setSysLogMethods((String)map.get("methods"));
         sysLog.setSysLogResult("执行成功");
         sysLog.setSysLogIp(ip);
-        //sysLog.setLogHandleTimes(executeTime);
+        sysLog.setLogHandleTimes(executeTime);
         sysLog.setLogCreateDate(new Date());
         sysLog.setSysLogDesc((String)map.get("description"));
         if(user != null){
@@ -136,8 +101,8 @@ public class LoggerAspect {
 
     @AfterThrowing(pointcut = "loggerManagerCut()",throwing="ex")
     public void AfterThrowing(JoinPoint joinPoint,Throwable ex) throws Exception{
-        System.out.println("目标方法中抛出的异常:"+ex);
-        System.out.println("模拟抛出异常后的增强处理...");
+        logger.error("目标方法中抛出的异常:"+ex);
+        logger.error("抛出异常后的增强处理...");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         User user = ToolUtils.getLoginUser(request);
@@ -150,10 +115,10 @@ public class LoggerAspect {
             errSysLog.setSysLogMethods((String)map.get("methods"));
             errSysLog.setSysLogResult("执行失败");
             errSysLog.setSysLogIp(ip);
-            //errSysLog.setLogHandleTimes(executeTime);
+            errSysLog.setLogHandleTimes(executeTime);
             errSysLog.setLogCreateDate(new Date());
             errSysLog.setSysLogDesc((String)map.get("description"));
-            errSysLog.setLogErrorMsg(ex.getMessage());
+            errSysLog.setLogErrorMsg(ex.toString());
             if(user != null){
                 errSysLog.setLogCreateUser(user.getUserName());
             }
@@ -182,7 +147,7 @@ public class LoggerAspect {
             if (method.getName().equals(methodName)) {
                 Class[] clazzs = method.getParameterTypes();
                 if (clazzs.length == arguments.length) {
-                    LogType logType = (LogType)method.getAnnotation(LoggerManager.class).type();
+                    LogType logType = method.getAnnotation(LoggerManager.class).type();
                     map.put("methods", joinPoint.getSignature().getDeclaringTypeName() + "."
                             + joinPoint.getSignature().getName());
                     map.put("type",logType.GetDescription());
