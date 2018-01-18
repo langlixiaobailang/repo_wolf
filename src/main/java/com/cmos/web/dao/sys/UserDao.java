@@ -51,7 +51,7 @@ public interface  UserDao{
      * @return map
      * @throws Exception
      */
-    User selectByMap(Map<String, Object> map);
+    User selectByMap(Map<String, Object> map)throws Exception;
 
     /**
      * 查询列表

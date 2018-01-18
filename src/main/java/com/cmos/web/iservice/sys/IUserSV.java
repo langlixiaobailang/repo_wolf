@@ -16,20 +16,20 @@ public interface IUserSV{
      * 插入一条新数据
      * @return void
      */
-    void insert(User user);
+    void insert(User user) throws Exception;
 
     /**
      * 删除一条数据
      * @return void
      */
-    void delete(Long userId);
+    void delete(Long userId) throws Exception;
 
     /**
      * 批量删除
      * @return void
      * @throws Exception
      */
-    void batchDelete(List<Integer> ids);
+    void batchDelete(List<Integer> ids) throws Exception;
 
     /**
      * 更新一条数据
@@ -38,7 +38,7 @@ public interface IUserSV{
      * @throws Exception
      */
     @LoggerManager(type = LogType.UPDATE)
-    void update(User user);
+    void update(User user) throws Exception;
 
     /**
      * 根据id查询一条数据
@@ -46,7 +46,7 @@ public interface IUserSV{
      * @return T
      * @throws Exception
      */
-    User select(Long id);
+    User select(Long id) throws Exception;
 
     /**
      * 根据map参数，查询一条数据
@@ -54,12 +54,12 @@ public interface IUserSV{
      * @return T
      * @throws Exception
      */
-    User selectByMap(Map<String, Object> map);
+    User selectByMap(Map<String, Object> map)throws Exception;
     /**
      * 根据map参数，获取分页列表
      * @param map
      * @return map
      * @throws Exception
      */
-    List<User> getListByMap(Map<String, Object> map);
+    List<User> getListByMap(Map<String, Object> map) throws Exception;
 }

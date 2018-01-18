@@ -30,29 +30,25 @@ public class LoginController extends IController {
 	 */
 	@RequestMapping(value = "/login-check",method = RequestMethod.POST)
 	@LoggerManager(type = LogType.LOGIN,module = "登录",description = "用户登录")
-	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request){
+	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request) throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
-		try{
-			User loginUser = (User)userSV.selectByMap(params);
-			if(null == loginUser || !loginUser.getLoginName().equals(params.get("loginName"))
-					||!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+"")) ){
-				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("用户名或密码错误！");
-				return result;
-			}else if(loginUser.getIfLock().equals("1")){
-				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("当前用户被锁定 请联系管理员！");
-				return result;
-			}else{
-				result.setReturnCode(this.SUCCESS);
-				result.setReturnMessage("登录成功！");
-				this.getSession(request).setAttribute("loginUser",loginUser);
-				return result;
-			}
-		}catch (Exception e){
-            logger.info(e.getMessage());
+		User loginUser = userSV.selectByMap(params);
+		if(null == loginUser || !loginUser.getLoginName().equals(params.get("loginName"))
+				||!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+"")) ){
+			result.setReturnCode(this.ERROR);
+			result.setReturnMessage("用户名或密码错误！");
+			return result;
+		}else if(loginUser.getIfLock().equals("1")){
+			result.setReturnCode(this.ERROR);
+			result.setReturnMessage("当前用户被锁定 请联系管理员！");
+			return result;
+		}else{
+			//int a = 1+Integer.valueOf("sdfd");
+			result.setReturnCode(this.SUCCESS);
+			result.setReturnMessage("登录成功！");
+			request.getSession().setAttribute("loginUser",loginUser);
+			return result;
 		}
-		return result;
 	}
 	/**
 	 * 退出系统
@@ -60,9 +56,9 @@ public class LoginController extends IController {
 	 */
 	@RequestMapping(value = "/login-out",method = RequestMethod.POST)
 	@LoggerManager(type = LogType.LOGINOUT)
-	public Result<Object> loginOut(@RequestParam Map<String, Object> params, HttpServletRequest request){
+	public Result<Object> loginOut(@RequestParam Map<String, Object> params, HttpServletRequest request) throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
-		this.getSession(request).removeAttribute("loginUser");
+		request.getSession().removeAttribute("loginUser");
 		result.setReturnCode(this.SUCCESS);
 		result.setReturnMessage("退出成功！");
 		return result;

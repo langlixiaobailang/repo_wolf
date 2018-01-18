@@ -20,4 +20,5 @@ public class SysLog implements Serializable{
     private Long logHandleTimes;
     private String sysLogDesc;
     private String logErrorMsg;
+    private String logCreateUser;
 }

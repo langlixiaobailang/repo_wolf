@@ -1,6 +1,6 @@
 package com.cmos.web.dao.sys;
 
-import com.cmos.web.beans.sys.User;
+import com.cmos.web.beans.sys.SysLog;
 
 /**
  * Created by  on 2017/12/21.
@@ -11,5 +11,5 @@ public interface SysLogDao{
      * @return void
      * @throws Exception
      */
-    void insert(User user);
+    void insert(SysLog sysLog) throws Exception;
 }

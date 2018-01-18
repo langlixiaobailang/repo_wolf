@@ -14,20 +14,19 @@
         <result column="log_create_date" property="logCreateDate" jdbcType="TIMESTAMP" />
         <result column="sys_log_desc" property="sysLogDesc" jdbcType="VARCHAR" />
         <result column="log_error_msg" property="logErrorMsg" jdbcType="VARCHAR" />
+        <result column="log_create_user" property="logCreateUser" jdbcType="VARCHAR" />
     </resultMap>
 
     <!-- 添加方法 -->
     <insert id="insert" parameterType="com.cmos.web.beans.sys.SysLog"
             useGeneratedKeys="true"  keyProperty="id">
-        insert into sm_sys_user
-        (dept_id,user_name,login_name,password,phone,
-        email,if_admin,if_lock,if_delete,update_date,
-        create_date,demo
+        insert into sm_sys_log
+        (log_type_name,sys_log_module,sys_log_methods,sys_log_result,sys_log_ip,
+        log_handle_times,log_create_date,sys_log_desc,log_error_msg,log_create_user
         )
         values (
-        #{deptId},#{userName},#{loginName},#{password},#{phone},
-        #{email},#{ifAdmin},0,0,#{updateDate},
-        now(),#{demo}
+        #{logTypeName},#{sysLogModule},#{sysLogMethods},#{sysLogResult},#{sysLogIp},
+        #{logHandleTimes},#{logCreateDate},#{sysLogDesc},#{logErrorMsg},#{logCreateUser}
         )
     </insert>
 </mapper>

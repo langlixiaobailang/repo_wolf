@@ -34,7 +34,7 @@ public class UserController extends IController{
 	 * @return
 	 */
 	@RequestMapping(value = "/get-user",method = RequestMethod.POST)
-	public Result<Object> getUser(@RequestParam Map<String, Object> params, HttpServletRequest request){
+	public Result<Object> getUser(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
 			Map<String,Object> paramMap = new HashMap<>();
@@ -57,7 +57,7 @@ public class UserController extends IController{
 	 * @return
 	 */
 	@RequestMapping(value = "/get-user-list",method = RequestMethod.POST)
-	public Result<Object> getUserList(@RequestParam Map<String, Object> params, HttpServletRequest request){
+	public Result<Object> getUserList(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
 			PageHelper.startPage(this.pageNum,this.pageSize);
@@ -82,7 +82,7 @@ public class UserController extends IController{
 	 */
 	@LoggerManager(type = LogType.INSERT,module = "用户",description = "添加成功！")
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
-	public Result<Object> insert(@RequestParam Map<String, Object> params, HttpServletRequest request){
+	public Result<Object> insert(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
 			User user = new User();
@@ -107,7 +107,7 @@ public class UserController extends IController{
 	 */
 	@LoggerManager(type = LogType.INSERT,module = "用户",description = "修改成功！")
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
-	public Result<Object> update(@RequestParam Map<String, Object> params, HttpServletRequest request){
+	public Result<Object> update(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
 			//判断id为空添加，否则是修改

@@ -10,5 +10,5 @@ public interface ISysLogSV {
      * 插入一条新数据
      * @return void
      */
-    void insert(SysLog sysLog);
+    void insert(SysLog sysLog) throws Exception;
 }

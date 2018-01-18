@@ -26,34 +26,4 @@ public class IController {
     public static final  Object object = ""; //默认返回值为空
     public static final  Integer pageNum = 1;
     public static final  Integer pageSize = 20;
-    /**
-     * 获取HttpSession
-     * @return HttpSession
-     */
-    protected HttpSession getSession(HttpServletRequest request)
-    {
-        HttpSession session = request.getSession();
-        return session;
-    }
-
-    /**
-     * 获取登录用户
-     * @return
-     */
-    public User getLoginUser(HttpServletRequest request) {
-        HttpSession session = getSession(request);
-        User user = (User)session.getAttribute("loginUser");
-        if(user != null){
-            return user;
-        }
-        return null;
-    }
-
-    /**
-     * 获取IP地址
-     * @return
-     */
-    protected String getRemoteAddr(HttpServletRequest request) {
-        return request.getRemoteAddr();
-    }
 }

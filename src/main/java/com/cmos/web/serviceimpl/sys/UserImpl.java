@@ -18,37 +18,37 @@ public class  UserImpl implements  IUserSV {
     private UserDao userDao;
 
     @Override
-    public void insert(User user) {
+    public void insert(User user) throws Exception{
         userDao.insert(user);
     }
 
     @Override
-    public void delete(Long userId) {
+    public void delete(Long userId) throws Exception{
         userDao.delete(userId);
     }
 
     @Override
-    public void batchDelete(List<Integer> ids) {
+    public void batchDelete(List<Integer> ids) throws Exception{
         userDao.batchDelete(ids);
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user) throws Exception{
         userDao.update(user);
     }
 
     @Override
-    public User select(Long id) {
+    public User select(Long id) throws Exception{
         return userDao.select(id);
     }
 
     @Override
-    public User selectByMap(Map<String, Object> map) {
+    public User selectByMap(Map<String, Object> map) throws Exception{
         return userDao.selectByMap(map);
     }
 
     @Override
-    public List<User> getListByMap(Map<String, Object> map) {
+    public List<User> getListByMap(Map<String, Object> map) throws Exception{
         return userDao.getListByMap(map);
     }
 }
