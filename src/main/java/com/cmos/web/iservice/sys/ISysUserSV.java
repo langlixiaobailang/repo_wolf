@@ -2,7 +2,7 @@ package com.cmos.web.iservice.sys;
 
 
 import com.cmos.web.annotation.LoggerManager;
-import com.cmos.web.beans.sys.User;
+import com.cmos.web.beans.sys.SysUser;
 import com.cmos.web.common.enums.LogType;
 
 import java.util.List;
@@ -11,12 +11,12 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/12/21.
  */
-public interface IUserSV{
+public interface ISysUserSV {
     /**
      * 插入一条新数据
      * @return void
      */
-    void insert(User user) throws Exception;
+    void insert(SysUser sysUser) throws Exception;
 
     /**
      * 删除一条数据
@@ -38,7 +38,7 @@ public interface IUserSV{
      * @throws Exception
      */
     @LoggerManager(type = LogType.UPDATE)
-    void update(User user) throws Exception;
+    void update(SysUser sysUser) throws Exception;
 
     /**
      * 根据id查询一条数据
@@ -46,7 +46,7 @@ public interface IUserSV{
      * @return T
      * @throws Exception
      */
-    User select(Long id) throws Exception;
+    SysUser select(Long id) throws Exception;
 
     /**
      * 根据map参数，查询一条数据
@@ -54,12 +54,12 @@ public interface IUserSV{
      * @return T
      * @throws Exception
      */
-    User selectByMap(Map<String, Object> map)throws Exception;
+    SysUser selectByMap(Map<String, Object> map)throws Exception;
     /**
      * 根据map参数，获取分页列表
      * @param map
      * @return map
      * @throws Exception
      */
-    List<User> getListByMap(Map<String, Object> map) throws Exception;
+    List<SysUser> getListByMap(Map<String, Object> map) throws Exception;
 }

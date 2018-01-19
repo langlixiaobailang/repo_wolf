@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by Administrator on 2017/12/21.
  */
 @Data
-public class User implements Serializable{
+public class SysUser implements Serializable{
     private Long id;
     private Long deptId;
     private String userName;

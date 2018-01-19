@@ -1,10 +1,5 @@
 package com.cmos.web.controller.sys;
 
-import com.cmos.web.beans.sys.User;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 /**
  * Created by Administrator on 2018/1/3.
  */

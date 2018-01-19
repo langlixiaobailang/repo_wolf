@@ -2,11 +2,9 @@ package com.cmos.web.Aspect;
 
 import com.cmos.web.annotation.LoggerManager;
 import com.cmos.web.beans.sys.SysLog;
-import com.cmos.web.beans.sys.User;
+import com.cmos.web.beans.sys.SysUser;
 import com.cmos.web.common.enums.LogType;
-import com.cmos.web.common.result.Result;
 import com.cmos.web.common.utils.ToolUtils;
-import com.cmos.web.controller.sys.IController;
 import com.cmos.web.iservice.sys.ISysLogSV;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -80,7 +78,7 @@ public class LoggerAspect {
     public void AfterReturning(JoinPoint joinPoint,Object object) throws Exception{
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        User user = ToolUtils.getLoginUser(request);
+        SysUser user = ToolUtils.getLoginUser(request);
         String ip = ToolUtils.getRemoteAddr(request);
         Map<String, Object> map = getControllerMethodDescription(joinPoint);
         SysLog sysLog = new SysLog();
@@ -105,7 +103,7 @@ public class LoggerAspect {
         logger.error("抛出异常后的增强处理...");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        User user = ToolUtils.getLoginUser(request);
+        SysUser user = ToolUtils.getLoginUser(request);
         String ip = ToolUtils.getRemoteAddr(request);
         Map<String, Object> map = getControllerMethodDescription(joinPoint);
         //异常 表示方法调用失败 保存操作日志

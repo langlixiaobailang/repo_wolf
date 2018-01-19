@@ -1,10 +1,10 @@
 package com.cmos.web.controller.sys;
 
 import com.cmos.web.annotation.LoggerManager;
-import com.cmos.web.beans.sys.User;
+import com.cmos.web.beans.sys.SysUser;
 import com.cmos.web.common.enums.LogType;
 import com.cmos.web.common.result.Result;
-import com.cmos.web.iservice.sys.IUserSV;
+import com.cmos.web.iservice.sys.ISysUserSV;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -23,10 +23,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/user")
-public class UserController extends IController{
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+public class SysUserController extends IController{
+	private static final Logger logger = LoggerFactory.getLogger(SysUserController.class);
 	@Autowired
-	private IUserSV userSV;
+	private ISysUserSV userSV;
 	/**
 	 * 获取对象
 	 * @param params
@@ -39,7 +39,7 @@ public class UserController extends IController{
 		try {
 			Map<String,Object> paramMap = new HashMap<>();
 			paramMap.put("id",34L);
-			User user = (User) userSV.selectByMap(paramMap);
+			SysUser user = (SysUser) userSV.selectByMap(paramMap);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.SELECT_SUCCESS_MO_MSG);
 			result.setObject(user);
@@ -62,7 +62,7 @@ public class UserController extends IController{
 		try {
 			PageHelper.startPage(this.pageNum,this.pageSize);
 			PageHelper.orderBy("create_date desc");
-			List<User> list = (List<User>)userSV.getListByMap(params);
+			List<SysUser> list = (List<SysUser>)userSV.getListByMap(params);
 			PageInfo p = new PageInfo (list);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.SELECT_SUCCESS_MSG);
@@ -85,7 +85,7 @@ public class UserController extends IController{
 	public Result<Object> insert(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
-			User user = new User();
+			SysUser user = new SysUser();
             if(StringUtils.isBlank(params.get("id")+"")){
 				userSV.insert(user);
 				result.setReturnCode(this.SUCCESS);
@@ -111,13 +111,13 @@ public class UserController extends IController{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
 			//判断id为空添加，否则是修改
-			if(StringUtils.isBlank(params.get("id")+"")){
+			if(StringUtils.isBlank((String)params.get("id"))){
 				result.setReturnCode(this.ERROR);
 				result.setReturnMessage(this.UPDATE_ERROR_MSG);
 				return result;
 			}
 			 //先查询对象在修改
-			User user = (User)userSV.selectByMap(params);
+			SysUser user = userSV.selectByMap(params);
 			userSV.update(user);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.UPDATE_SUCCESS_MSG);

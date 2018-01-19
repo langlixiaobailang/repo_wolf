@@ -1,6 +1,6 @@
 package com.cmos.web.common.utils;
 
-import com.cmos.web.beans.sys.User;
+import com.cmos.web.beans.sys.SysUser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,9 +29,9 @@ public class ToolUtils {
      * 获取登录用户
      * @return
      */
-    public static User getLoginUser(HttpServletRequest request) {
+    public static SysUser getLoginUser(HttpServletRequest request) {
         HttpSession session = getSession(request);
-        User user = (User)session.getAttribute("loginUser");
+        SysUser user = (SysUser)session.getAttribute("loginUser");
         if(user != null){
             return user;
         }
