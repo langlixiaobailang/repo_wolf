@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2018/1/18.
@@ -58,5 +60,46 @@ public class ToolUtils {
         seq++;
         return (new SimpleDateFormat("yyMMddHHmmss").format(new Date()))
                 + String.format("%03d", seq %= MAX_PER_SECOND);
+    }
+
+    /**
+     * 去掉特殊字符串【<>】
+     * @return
+     */
+    public static String OperationStr(String specialStr){
+        String newSpecialStr = specialStr;
+        if(newSpecialStr == null){
+            return newSpecialStr;
+        }
+        newSpecialStr = newSpecialStr.replaceAll("<", "");
+        newSpecialStr = newSpecialStr.replaceAll(">", "");
+        return newSpecialStr;
+    }
+
+    //验证身份证号码  15或者18位就行
+    public static boolean validateIdCard(String number){
+        String rgx = "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$";
+        Pattern p = Pattern.compile(rgx);
+        Matcher m = p.matcher(number);
+        return m.matches();
+    }
+
+    //验证身份证号码  15或者18位就行
+    public static boolean validateIdCard2(String number){
+        String rgx = "^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$";
+        Pattern p = Pattern.compile(rgx);
+        Matcher m = p.matcher(number);
+        return m.matches();
+    }
+
+    /**
+     * 验证手机号
+     * @param mobiles
+     * @return
+     */
+    public static boolean validateMobile(String mobiles){
+        Pattern p = Pattern.compile("^1[3|4|5|7|8][0-9]\\d{8}$");
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
     }
 }

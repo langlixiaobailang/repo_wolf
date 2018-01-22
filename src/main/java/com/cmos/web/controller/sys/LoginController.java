@@ -32,6 +32,7 @@ public class LoginController extends IController {
 	@LoggerManager(type = LogType.LOGIN,module = "用户",description = "用户登录")
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request) throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
+		try {
 		SysUser loginUser = userSV.selectByMap(params);
 		if(null == loginUser || !loginUser.getLoginName().equals(params.get("loginName"))
 				||!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+"")) ){
@@ -49,6 +50,11 @@ public class LoginController extends IController {
 			request.getSession().setAttribute("loginUser",loginUser);
 			return result;
 		}
+	  }catch (Exception ex){
+	  	     logger.info(ex.getMessage());
+             //throw ex;
+	  }
+	  return result;
 	}
 	/**
 	 * 退出系统

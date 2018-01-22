@@ -10,7 +10,7 @@
         <result column="sys_log_methods" property="sysLogMethods" jdbcType="VARCHAR" />
         <result column="sys_log_result" property="sysLogResult" jdbcType="VARCHAR" />
         <result column="sys_log_ip" property="sysLogIp" jdbcType="VARCHAR" />
-        <result column="log_handle_times" property="logHandleTimes" jdbcType="BIGINT" />
+        <result column="log_handle_times" property="logHandleTimes" jdbcType="INTEGER" />
         <result column="log_create_date" property="logCreateDate" jdbcType="TIMESTAMP" />
         <result column="sys_log_desc" property="sysLogDesc" jdbcType="VARCHAR" />
         <result column="log_error_msg" property="logErrorMsg" jdbcType="VARCHAR" />
