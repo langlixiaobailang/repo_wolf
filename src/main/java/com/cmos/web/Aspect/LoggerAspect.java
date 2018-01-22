@@ -75,7 +75,8 @@ public class LoggerAspect {
     }
 
     @AfterReturning(pointcut = "loggerManagerCut()",returning = "object")//打印输出结果
-    public void AfterReturning(JoinPoint joinPoint,Object object) throws Exception{
+        public void AfterReturning(JoinPoint joinPoint,Object object) throws Exception{
+        logger.error("******目标方法执行成功***********");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         SysUser user = ToolUtils.getLoginUser(request);
@@ -94,13 +95,13 @@ public class LoggerAspect {
             sysLog.setLogCreateUser(user.getUserName());
         }
         sysLogSV.insert(sysLog);
+        logger.error("******目标方法执行成功后 保存操作日志记录成功***********");
         logger.info("response={}",object.toString());
     }
 
     @AfterThrowing(pointcut = "loggerManagerCut()",throwing="ex")
     public void AfterThrowing(JoinPoint joinPoint,Throwable ex) throws Exception{
         logger.error("目标方法中抛出的异常:"+ex);
-        logger.error("抛出异常后的增强处理...");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         SysUser user = ToolUtils.getLoginUser(request);
@@ -121,6 +122,7 @@ public class LoggerAspect {
                 errSysLog.setLogCreateUser(user.getUserName());
             }
             sysLogSV.insert(errSysLog);
+        logger.error("抛出异常后的增强处理,保存操作日志记录成功...");
     }
     /**
      * 获取注解中对方法的描述信息 用于Controller层注解

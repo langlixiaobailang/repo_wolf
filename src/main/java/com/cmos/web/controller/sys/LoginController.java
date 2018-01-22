@@ -33,28 +33,26 @@ public class LoginController extends IController {
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request) throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
-		SysUser loginUser = userSV.selectByMap(params);
-		if(null == loginUser || !loginUser.getLoginName().equals(params.get("loginName"))
-				||!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+"")) ){
-			result.setReturnCode(this.ERROR);
-			result.setReturnMessage("用户名或密码错误！");
-			return result;
-		}else if(loginUser.getIfLock().equals("1")){
-			result.setReturnCode(this.ERROR);
-			result.setReturnMessage("当前用户被锁定 请联系管理员！");
-			return result;
-		}else{
-			int aa = 10/0;
-			result.setReturnCode(this.SUCCESS);
-			result.setReturnMessage("登录成功！");
-			request.getSession().setAttribute("loginUser",loginUser);
-			return result;
-		}
+			SysUser loginUser = userSV.selectByMap(params);
+			if(null == loginUser || !loginUser.getLoginName().equals(params.get("loginName"))
+					||!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+"")) ){
+				result.setReturnCode(this.ERROR);
+				result.setReturnMessage("用户名或密码错误！");
+				return result;
+			}else if(loginUser.getIfLock().equals("1")){
+				result.setReturnCode(this.ERROR);
+				result.setReturnMessage("当前用户被锁定 请联系管理员！");
+				return result;
+			}else{
+				//int aa = 10/0;
+				result.setReturnCode(this.SUCCESS);
+				result.setReturnMessage("登录成功！");
+				request.getSession().setAttribute("loginUser",loginUser);
+				return result;
+			}
 	  }catch (Exception ex){
-	  	     logger.info(ex.getMessage());
-             //throw ex;
+             throw ex;
 	  }
-	  return result;
 	}
 	/**
 	 * 退出系统
