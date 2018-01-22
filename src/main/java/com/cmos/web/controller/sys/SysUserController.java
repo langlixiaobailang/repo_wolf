@@ -39,16 +39,14 @@ public class SysUserController extends IController{
 		try {
 			Map<String,Object> paramMap = new HashMap<>();
 			paramMap.put("id",34L);
-			SysUser user = (SysUser) userSV.selectByMap(paramMap);
+			SysUser user = userSV.selectByMap(paramMap);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.SELECT_SUCCESS_MO_MSG);
 			result.setObject(user);
 			return result;
 		} catch (Exception e) {
-			logger.error(this.SELECT_ERROR_MO_MSG,e);
-			e.printStackTrace();
+			throw e;
 		}
-	    return null;
 	}
 	/**
 	 * 根据参数获取列表分页
@@ -62,17 +60,15 @@ public class SysUserController extends IController{
 		try {
 			PageHelper.startPage(this.pageNum,this.pageSize);
 			PageHelper.orderBy("create_date desc");
-			List<SysUser> list = (List<SysUser>)userSV.getListByMap(params);
+			List<SysUser> list = userSV.getListByMap(params);
 			PageInfo p = new PageInfo (list);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.SELECT_SUCCESS_MSG);
 			result.setObject((Object)p);
 			return result;
 		} catch (Exception e) {
-			logger.error(this.SELECT_ERROR_MO_MSG,e);
-			e.printStackTrace();
+			throw e;
 		}
-		return  null;
 	}
 	/**
 	 * 添加
@@ -80,8 +76,8 @@ public class SysUserController extends IController{
 	 * @param request
 	 * @return
 	 */
-	@LoggerManager(type = LogType.INSERT,module = "用户",description = "添加成功！")
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
+	@LoggerManager(type = LogType.INSERT,module = "用户",description = "添加成功！")
 	public Result<Object> insert(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
@@ -94,9 +90,8 @@ public class SysUserController extends IController{
 			return result;
 		} catch (Exception e) {
 			logger.error(this.INSERT_SUCCESS_MSG,e);
-			e.printStackTrace();
+			throw e;
 		}
-		return null;
 	}
 
 	/**
@@ -105,8 +100,8 @@ public class SysUserController extends IController{
 	 * @param request
 	 * @return
 	 */
-	@LoggerManager(type = LogType.INSERT,module = "用户",description = "修改成功！")
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
+	@LoggerManager(type = LogType.UPDATE,module = "用户",description = "修改成功！")
 	public Result<Object> update(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
@@ -116,6 +111,7 @@ public class SysUserController extends IController{
 				result.setReturnMessage(this.UPDATE_ERROR_MSG);
 				return result;
 			}
+			int aa = 1/0;
 			 //先查询对象在修改
 			SysUser user = userSV.selectByMap(params);
 			userSV.update(user);
@@ -123,9 +119,7 @@ public class SysUserController extends IController{
 			result.setReturnMessage(this.UPDATE_SUCCESS_MSG);
 			return result;
 		} catch (Exception e) {
-			logger.error(this.UPDATE_ERROR_MSG,e);
-			e.printStackTrace();
+			throw e;
 		}
-		return null;
 	}
 }
