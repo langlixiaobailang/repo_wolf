@@ -86,7 +86,7 @@
   $("#update").click( function () {
     var id = $("#id").val();
     $.ajax({
-      url : "user/save",
+      url : "user/update",
       type : "post",
       data : {"id":id},
       success : function(result ,textStatus, jqXHR) {

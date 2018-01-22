@@ -105,7 +105,7 @@
 		</plugins>
 	</build>
 
-    <!-- maven 私服地址-->
+    <!-- maven 私服地址(中移库地址)-->
 	<repositories>
 		<repository>
 			<id>sonatype-nexus-snapshots</id>
