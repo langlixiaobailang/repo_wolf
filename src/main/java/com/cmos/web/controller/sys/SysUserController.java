@@ -77,7 +77,7 @@ public class SysUserController extends IController{
 	 * @return
 	 */
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
-	@LoggerManager(type = LogType.INSERT,module = "用户",description = "添加成功！")
+	@LoggerManager(type = LogType.INSERT,module = "用户",description = "用户添加！")
 	public Result<Object> insert(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
@@ -101,7 +101,7 @@ public class SysUserController extends IController{
 	 * @return
 	 */
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
-	@LoggerManager(type = LogType.UPDATE,module = "用户",description = "修改成功！")
+	@LoggerManager(type = LogType.UPDATE,module = "用户",description = "用户修改！")
 	public Result<Object> update(@RequestParam Map<String, Object> params, HttpServletRequest request)throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
