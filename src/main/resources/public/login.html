@@ -17,6 +17,7 @@
   <input type="button" id="queryList" value="查询列表"/>
   <input type="button" id="save" value="添加"/>
   <input type="button" id="update" value="修改"/>
+  <input type="button" id="delete" value="deleteUser"/>
 </div>
 
 <script type="text/javascript">
@@ -96,6 +97,23 @@
         }
       }
     });
+  });
+
+  //
+  $("#delete").click( function () {
+
+      $.ajax({
+          url : "user/delete",
+          type : "post",
+          data : {"id":8888},
+          success : function(result ,textStatus, jqXHR) {
+              if(result.returnCode == "200"){
+                  alert(result.returnCode + " =="+result.returnMessage);
+              }else{
+                  alert(result.returnCode + " =="+result.returnMessage);
+              }
+          }
+      });
   });
 
 </script>

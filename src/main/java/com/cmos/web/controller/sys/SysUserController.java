@@ -111,7 +111,7 @@ public class SysUserController extends IController{
 				result.setReturnMessage(this.UPDATE_ERROR_MSG);
 				return result;
 			}
-			int aa = 1/0;
+			// int aa = 1/0;
 			 //先查询对象在修改
 			SysUser user = userSV.selectByMap(params);
 			userSV.update(user);

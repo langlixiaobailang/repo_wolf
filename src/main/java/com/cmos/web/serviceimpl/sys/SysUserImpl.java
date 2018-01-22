@@ -5,6 +5,7 @@ import com.cmos.web.dao.sys.SysUserDao;
 import com.cmos.web.iservice.sys.ISysUserSV;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/12/21.
  */
+
 @Service
 public class SysUserImpl implements ISysUserSV {
     @Autowired
@@ -25,6 +27,7 @@ public class SysUserImpl implements ISysUserSV {
     @Override
     public void delete(Long userId) throws Exception{
         sysUserDao.delete(userId);
+
     }
 
     @Override
@@ -35,6 +38,10 @@ public class SysUserImpl implements ISysUserSV {
     @Override
     public void update(SysUser user) throws Exception{
         sysUserDao.update(user);
+        int i =10/0;
+//        user.setUserName("事务回滚");
+//        sysUserDao.update(user);
+
     }
 
     @Override

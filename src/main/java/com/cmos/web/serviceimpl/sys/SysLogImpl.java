@@ -5,6 +5,7 @@ import com.cmos.web.dao.sys.SysLogDao;
 import com.cmos.web.iservice.sys.ISysLogSV;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Administrator on 2017/12/21.
