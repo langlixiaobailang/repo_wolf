@@ -14,8 +14,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @MapperScan({"com.cmos.web.dao"})
 @ComponentScan(basePackages={"com.cmos.web"})
 @EnableCaching
-@ServletComponentScan
-@EnableAspectJAutoProxy//开启spring对Aspectj的支持
+//@ServletComponentScan
+//@EnableAspectJAutoProxy//开启spring对Aspectj的支持
 public class SpingBootApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(SpingBootApplication.class, args);

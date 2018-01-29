@@ -1,6 +1,7 @@
 package com.cmos.web.dao.sys;
 
 import com.cmos.web.beans.sys.SysUser;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;

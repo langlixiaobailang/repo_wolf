@@ -1,11 +1,13 @@
 package com.cmos.web.controller.sys;
 
 import com.cmos.web.annotation.LoggerManager;
-import com.cmos.web.beans.sys.SysUser;
 import com.cmos.web.common.enums.LogType;
 import com.cmos.web.common.result.Result;
 import com.cmos.web.common.utils.MD5Helper;
 import com.cmos.web.iservice.sys.ISysUserSV;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ import java.util.Map;
 public class LoginController extends IController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
-	private ISysUserSV userSV;
+	private ISysUserSV sysUserSV;
 
 	/**
 	 * 登录校验,验证登录用户
@@ -33,26 +35,19 @@ public class LoginController extends IController {
 	public Result<Object> loginCheck(@RequestParam Map<String, Object> params, HttpServletRequest request) throws Exception{
 		Result<Object> result = new Result<>(this.ERROR,this.GETPARAM_ERROR_MSG,this.object);
 		try {
-			SysUser loginUser = userSV.selectByMap(params);
-			if(null == loginUser || !loginUser.getLoginName().equals(params.get("loginName"))
-					||!loginUser.getPassword().equals(MD5Helper.getMD5(params.get("password")+"")) ){
-				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("用户名或密码错误！");
-				return result;
-			}else if(loginUser.getIfLock().equals("1")){
-				result.setReturnCode(this.ERROR);
-				result.setReturnMessage("当前用户被锁定 请联系管理员！");
-				return result;
-			}else{
-				//int aa = 10/0;
+			UsernamePasswordToken token = new UsernamePasswordToken(params.get("loginName")+"",
+				MD5Helper.getMD5(params.get("password")+""));
+			Subject currentUser = SecurityUtils.getSubject();
+			currentUser.login(token);//验证
+			if (currentUser.isAuthenticated()){
 				result.setReturnCode(this.SUCCESS);
-				result.setReturnMessage("登录成功！");
-				request.getSession().setAttribute("loginUser",loginUser);
+				result.setReturnMessage("登录成功");
 				return result;
-			}
-	  }catch (Exception ex){
-             throw ex;
-	  }
+			 }
+		  }catch (Exception ex){
+			throw ex;
+		 }
+		return result;
 	}
 	/**
 	 * 退出系统
