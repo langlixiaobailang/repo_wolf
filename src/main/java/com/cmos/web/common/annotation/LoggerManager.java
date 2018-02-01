@@ -1,4 +1,4 @@
-package com.cmos.web.annotation;
+package com.cmos.web.common.annotation;
 
 import com.cmos.web.common.enums.LogType;
 

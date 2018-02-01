@@ -1,4 +1,4 @@
-package com.cmos.web.Aspect;
+package com.cmos.web.common.Aspect;
 
 /**
  * Created by Administrator on 2018/1/18.

@@ -1,4 +1,4 @@
-package com.cmos.web.shiro;
+package com.cmos.web.common.shiro;
 
 import com.cmos.web.beans.sys.SysUser;
 import com.cmos.web.iservice.sys.ISysUserSV;

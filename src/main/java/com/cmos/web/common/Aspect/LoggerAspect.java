@@ -1,8 +1,8 @@
-package com.cmos.web.Aspect;
+package com.cmos.web.common.Aspect;
 
-import com.cmos.web.annotation.LoggerManager;
 import com.cmos.web.beans.sys.SysLog;
 import com.cmos.web.beans.sys.SysUser;
+import com.cmos.web.common.annotation.LoggerManager;
 import com.cmos.web.common.enums.LogType;
 import com.cmos.web.common.utils.ToolUtils;
 import com.cmos.web.iservice.sys.ISysLogSV;
@@ -38,7 +38,7 @@ public class LoggerAspect {
     @Autowired
     private ISysLogSV sysLogSV;
 
-    @Pointcut(" @annotation(com.cmos.web.annotation.LoggerManager)")
+    @Pointcut(" @annotation(com.cmos.web.common.annotation.LoggerManager)")
     public void loggerManagerCut() {}
 
     @Before("loggerManagerCut()")

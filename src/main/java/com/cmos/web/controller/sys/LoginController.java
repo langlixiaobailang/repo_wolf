@@ -1,6 +1,6 @@
 package com.cmos.web.controller.sys;
 
-import com.cmos.web.annotation.LoggerManager;
+import com.cmos.web.common.annotation.LoggerManager;
 import com.cmos.web.common.enums.LogType;
 import com.cmos.web.common.identifyCode.VerifyCode;
 import com.cmos.web.common.result.Result;

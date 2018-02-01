@@ -1,4 +1,4 @@
-package com.cmos.web.filter;
+package com.cmos.web.common.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

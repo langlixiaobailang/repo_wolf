@@ -1,9 +1,7 @@
 package com.cmos.web.iservice.sys;
 
 
-import com.cmos.web.annotation.LoggerManager;
 import com.cmos.web.beans.sys.SysUser;
-import com.cmos.web.common.enums.LogType;
 
 import java.util.List;
 import java.util.Map;
