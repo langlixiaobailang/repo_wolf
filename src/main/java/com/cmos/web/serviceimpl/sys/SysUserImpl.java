@@ -6,6 +6,7 @@ import com.cmos.web.iservice.sys.ISysUserSV;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -37,12 +38,12 @@ public class SysUserImpl implements ISysUserSV {
     }
 
     @Override
-    public void update(SysUser user) throws Exception{
+    public void update(SysUser user){
         sysUserDao.update(user);
-        int i =10/0;
-//        user.setUserName("事务回滚");
-//        sysUserDao.update(user);
-
+        int aa = 10/0;
+        if (true) {
+            throw new RuntimeException("update 抛异常了");
+        }
     }
 
     @Override

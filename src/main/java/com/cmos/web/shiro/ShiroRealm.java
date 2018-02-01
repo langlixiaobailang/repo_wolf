@@ -32,7 +32,7 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        logger.info("********开始认证用户***********");
+        logger.info("******** start identification user ***********");
         // 第一步从token中取出用户名
         String loginName = (String) authenticationToken.getPrincipal();
         // 第二步：根据用户输入的loginName从数据库查询
@@ -43,7 +43,7 @@ public class ShiroRealm extends AuthorizingRealm {
             try {
                 sysUser = sysUserSV.selectByMap(paramMap);
             } catch (Exception e) {
-                logger.error("查询用户报错",e);
+                logger.error("search user error",e);
             }
             if (sysUser != null) {
                 String password = sysUser.getPassword();

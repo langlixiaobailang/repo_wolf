@@ -33,12 +33,10 @@ public interface ISysUserSV {
 
     /**
      * 更新一条数据
-     * @param user
      * @return void
      * @throws Exception
      */
-    @LoggerManager(type = LogType.UPDATE)
-    void update(SysUser sysUser) throws Exception;
+    void update(SysUser sysUser);
 
     /**
      * 根据id查询一条数据

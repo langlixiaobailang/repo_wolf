@@ -114,6 +114,7 @@ public class SysUserController extends IController{
 			// int aa = 1/0;
 			 //先查询对象在修改
 			SysUser user = userSV.selectByMap(params);
+			user.setEmail("ww");
 			userSV.update(user);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.UPDATE_SUCCESS_MSG);

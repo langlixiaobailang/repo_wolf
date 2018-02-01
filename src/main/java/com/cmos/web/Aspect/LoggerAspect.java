@@ -43,17 +43,17 @@ public class LoggerAspect {
 
     @Before("loggerManagerCut()")
     public void beforeLogger(JoinPoint joinPoint) {
-        logger.info("******Before advice ******");
+        logger.info("****** Before advice ******");
         // 接收到请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         // 记录下请求内容
-        logger.info("******请求地址 : " + request.getRequestURL().toString());
-        logger.info("******类型: " + request.getMethod());
+        logger.info("******request url : " + request.getRequestURL().toString());
+        logger.info("******method type: " + request.getMethod());
         logger.info("******IP : " + request.getRemoteAddr());
-        logger.info("******请求方法 : " + joinPoint.getSignature().getDeclaringTypeName() + "."
+        logger.info("******request method : " + joinPoint.getSignature().getDeclaringTypeName() + "."
                 + joinPoint.getSignature().getName());
-        logger.info("******参数 : " + Arrays.toString(joinPoint.getArgs()));
+        logger.info("******params : " + Arrays.toString(joinPoint.getArgs()));
     }
 
     /**
@@ -76,7 +76,7 @@ public class LoggerAspect {
 
     @AfterReturning(pointcut = "loggerManagerCut()",returning = "object")//打印输出结果
         public void AfterReturning(JoinPoint joinPoint,Object object) throws Exception{
-        logger.error("******目标方法执行成功***********");
+        logger.error("****** AfterReturning success ***********");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         SysUser user = ToolUtils.getLoginUser(request);
@@ -95,13 +95,12 @@ public class LoggerAspect {
             sysLog.setLogCreateUser(user.getUserName());
         }
         sysLogSV.insert(sysLog);
-        logger.error("******目标方法执行成功后 保存操作日志记录成功***********");
         logger.info("response={}",object.toString());
     }
 
     @AfterThrowing(pointcut = "loggerManagerCut()",throwing="ex")
     public void AfterThrowing(JoinPoint joinPoint,Throwable ex) throws Exception{
-        logger.error("目标方法中抛出的异常:"+ex);
+        logger.error("AfterThrowing  error message :"+ex);
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         SysUser user = ToolUtils.getLoginUser(request);
@@ -122,7 +121,6 @@ public class LoggerAspect {
                 errSysLog.setLogCreateUser(user.getUserName());
             }
             sysLogSV.insert(errSysLog);
-        logger.error("抛出异常后的增强处理,保存操作日志记录成功...");
     }
     /**
      * 获取注解中对方法的描述信息 用于Controller层注解

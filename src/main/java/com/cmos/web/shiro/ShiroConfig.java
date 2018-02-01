@@ -39,12 +39,6 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		// 必须设置 SecurityManager
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
-		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		// 登录成功后要跳转的链接
-		shiroFilterFactoryBean.setSuccessUrl("/index");
-		// 未授权界面;
-		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 		//自定义拦截器
 		Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
 		//限制同一帐号同时在线的个数。

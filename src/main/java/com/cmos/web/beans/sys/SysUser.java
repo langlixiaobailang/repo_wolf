@@ -17,9 +17,9 @@ public class SysUser implements Serializable{
     private String password;
     private String phone;
     private String email;
-    private Long ifAdmin;
-    private Long ifLock;
-    private Long ifDelete;
+    private int ifAdmin;
+    private int ifLock;
+    private int ifDelete;
     private Date updateDate;
     private Date  createDate;
     private String demo;
