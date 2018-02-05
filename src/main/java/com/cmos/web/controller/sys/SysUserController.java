@@ -4,6 +4,7 @@ import com.cmos.web.beans.sys.SysUser;
 import com.cmos.web.common.annotation.LoggerManager;
 import com.cmos.web.common.enums.LogType;
 import com.cmos.web.common.result.Result;
+import com.cmos.web.common.utils.ValidatorUtil;
 import com.cmos.web.iservice.sys.ISysUserSV;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -114,7 +115,10 @@ public class SysUserController extends IController{
 			// int aa = 1/0;
 			 //先查询对象在修改
 			SysUser user = userSV.selectByMap(params);
+			user.setUserName("1111111111111111111111111111111111");
+			user.setLoginName("999999999999999999999999999999999999");
 			user.setEmail("ww");
+			Map map = ValidatorUtil.validate(user);
 			userSV.update(user);
 			result.setReturnCode(this.SUCCESS);
 			result.setReturnMessage(this.UPDATE_SUCCESS_MSG);

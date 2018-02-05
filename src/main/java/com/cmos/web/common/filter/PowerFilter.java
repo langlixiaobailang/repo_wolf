@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by hy on 2017/12/18.
  */
-@WebFilter(filterName = "PowerFilter",urlPatterns = "/*")
+//@WebFilter(filterName = "PowerFilter",urlPatterns = "/*")
 public class PowerFilter implements Filter {
     private static final Logger Logger = LoggerFactory.getLogger(PowerFilter.class);
     @Override

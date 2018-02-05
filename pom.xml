@@ -133,6 +133,23 @@
 			<scope>true</scope>
 			<!-- optional=true,依赖不会传递，-->
 		</dependency>
+
+		<!--validator 数据校验 -->
+		<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.1-b04</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.7.Final</version>
+		</dependency>
+
+
 	</dependencies>
 	<!-- springboot maven 相关依赖包-->
 	<build>

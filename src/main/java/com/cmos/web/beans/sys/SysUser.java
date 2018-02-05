@@ -2,6 +2,8 @@ package com.cmos.web.beans.sys;
 
 import lombok.Data;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,7 +14,9 @@ import java.util.Date;
 public class SysUser implements Serializable{
     private Long id;
     private Long deptId;
+    @Size(max = 10,message = "名字最长为10个字符")
     private String userName;
+    @Max(value = 10,message = "denglu账号最大10个")
     private String loginName;
     private String password;
     private String phone;

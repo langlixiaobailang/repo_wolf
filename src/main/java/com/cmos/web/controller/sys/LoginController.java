@@ -29,8 +29,7 @@ import java.util.Map;
 @RequestMapping(value = "/login")
 public class LoginController extends IController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	@Autowired
-	private ISysUserSV sysUserSV;
+
 
 	/**
 	 * 登录校验,验证登录用户
