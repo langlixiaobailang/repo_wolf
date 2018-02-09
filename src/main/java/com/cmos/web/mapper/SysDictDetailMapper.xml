@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.cmos.web.dao.sys.SysDictDetailDao">
+
+
+
+    <!--查询对象-->
+    <select id = "getById"  >
+      select * from sm_sys_dict_detail where id = #{id}
+    </select>
+    <!--查询列表  带分页-->
+    <select id = "getListByMap"  >
+        select * from sm_sys_dict_detail
+    </select>
+
+
+    <!-- 添加方法 -->
+    <insert id="insert"            useGeneratedKeys="true"  keyProperty="id">
+      insert into sm_sys_dict_detail (`dict_main_id` ,`dict_code` ,`dict_value` ,`memo`
+      )
+       values (#{dictMainId},#{dictCode},#{dictValue},#{memo}
+       )
+    </insert>
+
+    <!-- 修改方法 -->
+    <update id="update" parameterType="com.cmos.web.beans.sys.SysUser">
+      update from sm_sys_dict_detail
+      <set>
+          <if test="dictMainId != null">   dict_main_id = #{dictMainId}           </if>
+          <if test="dictCode != null">   dict_code = #{dictCode}           </if>
+          <if test="dictValue != null">   dict_value = #{dictValue}           </if>
+          <if test="memo != null">   memo = #{memo}           </if>
+      </set>
+    </update>
+
+    <delete id="delete">
+         delete from
+        sm_sys_dict_detail
+        where
+        id =#{id}
+    </delete>
+
+</mapper>
