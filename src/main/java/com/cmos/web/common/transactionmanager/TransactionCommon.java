@@ -2,22 +2,27 @@ package com.cmos.web.common.transactionmanager;
 
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
+import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
  * Created by Administrator on 2018/1/19.
  */
-//@Configuration
-@Component
-public class Transaction {
+@Configuration
+//@Component
+public class TransactionCommon {
 
+    @Autowired(required = false)
+    public DataSourceTransactionManager transactionManager;
     @Autowired
-    private DataSourceTransactionManager transactionManager;
+    DataSource dataSource;
     // 创建事务通知
     @Bean(name = "txAdvice")
     public TransactionInterceptor getAdvisor() throws Exception {
@@ -29,6 +34,7 @@ public class Transaction {
         properties.setProperty("save*", "PROPAGATION_REQUIRED,-Throwable");
         properties.setProperty("update*", "PROPAGATION_REQUIRED,-Throwable");
         properties.setProperty("delete*", "PROPAGATION_REQUIRED,-Throwable");
+
         TransactionInterceptor tsi = new TransactionInterceptor(transactionManager,properties);
         return tsi;
     }
