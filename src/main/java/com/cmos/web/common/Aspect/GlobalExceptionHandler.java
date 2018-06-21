@@ -31,6 +31,8 @@ public class GlobalExceptionHandler {
             result.setReturnMessage("用户登录超时，请重新登录！");
         }else if(ex instanceof ExcessiveAttemptsException){
             result.setReturnMessage("失败次数过多！");
+        }else if(ex instanceof Exception){
+            result.setReturnMessage("程序报错！");
         }else{
         }
         ex.printStackTrace();

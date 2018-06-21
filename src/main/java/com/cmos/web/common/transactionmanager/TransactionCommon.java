@@ -2,7 +2,6 @@ package com.cmos.web.common.transactionmanager;
 
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -16,7 +15,7 @@ import java.util.Properties;
  * Created by Administrator on 2018/1/19.
  */
 @Configuration
-//@Component
+@Component
 public class TransactionCommon {
 
     @Autowired(required = false)

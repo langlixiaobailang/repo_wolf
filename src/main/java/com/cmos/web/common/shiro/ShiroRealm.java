@@ -25,6 +25,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private ISysUserSV sysUserSV;
 
+
     /**
      * authenticationToken
      * 认证
